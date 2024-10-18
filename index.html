@@ -63,7 +63,7 @@
             width: 100%;
         }
 
-        .leyenda, .actualizar-datos {
+        .leyenda, .actualizar-datos, .configuracion-datos {
             padding: 15px;
             background-color: var(--color-leyenda-fondo);
             border: 1px solid var(--color-borde);
@@ -71,7 +71,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .leyenda h3, .actualizar-datos h3 {
+        .leyenda h3, .actualizar-datos h3, .configuracion-datos h3 {
             margin-top: 0;
             font-weight: 500;
             text-align: center;
@@ -107,7 +107,7 @@
             border: 2px dashed var(--color-lote-ambas);
         }
 
-        .actualizar-datos button {
+        .actualizar-datos button, .configuracion-datos button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -302,53 +302,6 @@
             pointer-events: none;
         }
 
-        /* Estilos para formulario emergente */
-        #formularioLote {
-            display: none;
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid var(--color-borde);
-            border-radius: 8px;
-            z-index: 1000;
-            width: 30%;
-            max-width: 90%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        #formularioLote h3 {
-            margin-top: 0;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        #formularioLote label {
-            display: block;
-            margin-top: 10px;
-            font-weight: 500;
-        }
-
-        #formularioLote input, 
-        #formularioLote select {
-            border: 1px solid var(--color-borde);
-            border-radius: 4px;
-            padding: 8px;
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-
-        #formularioLote button {
-            margin-top: 15px;
-            padding: 8px 12px;
-            margin-right: 5px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-
         /* Responsive Design */
         @media (max-width: 1024px) {
             .calle {
@@ -366,7 +319,7 @@
                 max-width: 100%;
             }
 
-            .leyenda, .actualizar-datos {
+            .leyenda, .actualizar-datos, .configuracion-datos {
                 padding: 10px;
                 max-width: 100%;
             }
@@ -380,12 +333,6 @@
                 width: 60px;
                 height: 45px;
                 margin-bottom: 6px;
-            }
-
-            #formularioLote {
-                width: 90%;
-                left: 5%;
-                top: 5%;
             }
 
             .button-save {
@@ -424,7 +371,7 @@
 <h1>Mapa Lotes El Centauro</h1>
 
 <div class="main-container">
-    <!-- Sidebar con Leyenda y Actualizar Datos de Lotes -->
+    <!-- Sidebar con Leyenda, Configuración de Datos y Actualización de Lotes -->
     <div class="sidebar">
         <!-- Sección de leyenda -->
         <div class="leyenda">
@@ -455,23 +402,44 @@
             </div>
         </div>
 
+        <!-- Sección Configuración de Lotes -->
+        <div class="configuracion-datos">
+            <h3>Configuración de Calles y Lotes</h3>
+            <label for="cantidadCalles">Cantidad de Calles:</label>
+            <input type="number" id="cantidadCalles" min="1" value="1">
+
+            <!-- Llenar cada calle -->
+            <div id="configuracionCalles"></div>
+
+            <!-- Botón para guardar la configuración -->
+            <button class="button-save" onclick="guardarConfiguracion()">
+                <i class="fas fa-save"></i> Guardar Configuración
+            </button>
+        </div>
+
         <!-- Sección Actualizar Datos de Lotes -->
         <div class="actualizar-datos">
             <h3>Actualizar Datos de Lotes</h3>
             <label for="selectCalleEstado">Calle:</label>
             <select id="selectCalleEstado" onchange="actualizarOpcionesLotesEstado()">
+                <option value="">Seleccione una calle</option>
                 <!-- Opciones de calles generadas dinámicamente -->
             </select>
             <label for="selectLoteEstado">Lote:</label>
             <select id="selectLoteEstado">
+                <option value="">Seleccione un lote</option>
                 <!-- Opciones de lotes generadas dinámicamente -->
             </select>
             <label for="selectEstado">Estado:</label>
             <select id="selectEstado">
-                <!-- Solo tres opciones: Propietario, Alquilada y En Proceso -->
+                <!-- Opciones de estados -->
+                <option value="">Seleccione un estado</option>
                 <option value="propietario">Propietario</option>
                 <option value="alquilada">Alquilada</option>
                 <option value="en-proceso">En Proceso</option>
+                <option value="en-venta">En Venta</option>
+                <option value="en-alquiler">En Alquiler</option>
+                <option value="ambas">Ambas</option>
             </select>
             <button onclick="actualizarEstadoLote()" class="btn-actualizar">
                 <i class="fas fa-sync-alt"></i> Actualizar Lote
@@ -479,83 +447,514 @@
             <button onclick="mostrarFormularioDesdeEstado()" class="btn-editar">
                 <i class="fas fa-edit"></i> Editar Lote
             </button>
-            <!-- Botón Guardar Configuración movido aquí -->
-            <button class="button-save btn btn-primary" onclick="guardarConfiguracion()">
-                <i class="fas fa-save me-2"></i>Guardar Configuración
-            </button>
         </div>
     </div>
 
     <!-- Contenedor del mapa -->
     <div class="mapa-container">
-        <div class="mapa" id="mapaLotes">
-            <!-- Calles y lotes se generarán dinámicamente -->
+        <div class="mapa" id="mapa">
+            <!-- Calles se generan dinámicamente aquí -->
         </div>
     </div>
 </div>
 
+<!-- Formulario emergente para editar datos del lote -->
+<div id="formularioLote" style="display: none;">
+    <h3>Datos del Lote</h3>
+    <label for="propietario">Nombre y Apellido del Propietario:</label>
+    <input type="text" id="propietario" required>
+
+    <label for="inquilino">Nombre y Apellido del Inquilino:</label>
+    <input type="text" id="inquilino">
+
+    <label for="fechaDesde">Fecha Contrato Desde:</label>
+    <input type="date" id="fechaDesde">
+
+    <label for="fechaHasta">Fecha Contrato Hasta:</label>
+    <input type="date" id="fechaHasta">
+
+    <label for="enProceso">En Proceso de:</label>
+    <select id="enProceso">
+        <option value="">Seleccione</option>
+        <option value="en-venta">En Venta</option>
+        <option value="en-alquiler">En Alquiler</option>
+        <option value="ambas">Ambas</option>
+    </select>
+
+    <!-- Campo para cargar archivos -->
+    <label for="archivo">Adjuntar archivo:</label>
+    <input type="file" id="archivo" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+
+    <!-- Previsualización de la imagen adjunta -->
+    <img id="previsualizacionArchivo" src="#" alt="Previsualización" style="display: none; max-width: 100%; margin-top: 10px;">
+
+    <!-- Enlace para ver o descargar el archivo adjunto -->
+    <div id="archivoAdjunto" style="margin-top: 10px; display: none;">
+        <a href="#" id="enlaceArchivo" target="_blank" download>
+            <i class="fas fa-paperclip me-2"></i>Ver archivo adjunto
+        </a>
+        <button type="button" class="btn btn-danger btn-sm" onclick="borrarArchivoAdjunto()" id="botonBorrarArchivo" style="display: none;">
+            <i class="fas fa-trash-alt me-2"></i>Borrar Archivo
+        </button>
+    </div>
+
+    <button onclick="guardarDatosLote()" class="btn btn-primary">
+        <i class="fas fa-save me-2"></i>Guardar
+    </button>
+    <button onclick="cerrarFormulario()" class="btn btn-secondary">
+        <i class="fas fa-times me-2"></i>Cancelar
+    </button>
+</div>
+
 <script>
-    function generarConfiguracionInicial() {
-        const numeroCalles = prompt("¿Cuántas calles deseas crear?");
-        const mapaLotes = document.getElementById("mapaLotes");
-        mapaLotes.innerHTML = '';
+    let lotesPorCalle = [];
 
-        for (let i = 1; i <= numeroCalles; i++) {
-            const numeroLotesIzquierdo = prompt(`¿Cuántos lotes quieres en el lado izquierdo de la Calle ${i}?`);
-            const numeroLotesDerecho = prompt(`¿Cuántos lotes quieres en el lado derecho de la Calle ${i}?`);
-
-            const calle = document.createElement("div");
-            calle.className = "calle";
-
-            const ladoIzquierdo = document.createElement("div");
-            ladoIzquierdo.className = "lado lado-izquierdo";
-            ladoIzquierdo.id = `ladoIzquierdo${i}`;
-
-            for (let j = 1; j <= numeroLotesIzquierdo; j++) {
-                const lote = crearLote(`Calle ${i} - Lado Izquierdo - Lote ${j}`);
-                ladoIzquierdo.appendChild(lote);
-            }
-
-            const ladoDerecho = document.createElement("div");
-            ladoDerecho.className = "lado";
-            ladoDerecho.id = `ladoDerecho${i}`;
-
-            for (let k = 1; k <= numeroLotesDerecho; k++) {
-                const lote = crearLote(`Calle ${i} - Lado Derecho - Lote ${k}`);
-                ladoDerecho.appendChild(lote);
-            }
-
-            const calleLabel = document.createElement("div");
-            calleLabel.className = "calle-label";
-            calleLabel.innerText = `Calle ${i}`;
-
-            calle.appendChild(ladoIzquierdo);
-            calle.appendChild(calleLabel);
-            calle.appendChild(ladoDerecho);
-
-            mapaLotes.appendChild(calle);
+    // Función para cargar la configuración desde localStorage
+    function cargarConfiguracion() {
+        const configuracionGuardada = localStorage.getItem('lotesPorCalle');
+        if (configuracionGuardada) {
+            lotesPorCalle = JSON.parse(configuracionGuardada);
+            generarLotes();
+            poblarSelectCalleEstado();
+            document.querySelector('.configuracion-datos').style.display = 'none';
+            agregarBotonRestaurar();
         }
     }
 
-    function crearLote(nombre) {
-        const lote = document.createElement("div");
-        lote.className = "lote";
+    // Ejecutar al cargar la página
+    window.onload = function() {
+        cargarConfiguracion();
+    };
 
-        const inputLote = document.createElement("input");
-        inputLote.type = "text";
-        inputLote.value = nombre;
-        inputLote.className = "lote-input";
-        inputLote.onchange = (e) => {
-            lote.id = e.target.value;
-        };
+    document.getElementById('cantidadCalles').addEventListener('change', function() {
+        const configuracionCalles = document.getElementById('configuracionCalles');
+        configuracionCalles.innerHTML = '';
+        const cantidadCalles = parseInt(document.getElementById('cantidadCalles').value);
 
-        lote.appendChild(inputLote);
-        return lote;
+        for (let i = 1; i <= cantidadCalles; i++) {
+            const calleConfig = document.createElement('div');
+            calleConfig.className = 'calle-config';
+            calleConfig.innerHTML = `
+                <h4>Calle ${i}</h4>
+                <label for="lotesLadoIzquierdo_${i}">Lotes por Lado Izquierdo:</label>
+                <input type="number" id="lotesLadoIzquierdo_${i}" min="1" value="1">
+
+                <label for="lotesLadoDerecho_${i}">Lotes por Lado Derecho:</label>
+                <input type="number" id="lotesLadoDerecho_${i}" min="1" value="1">
+            `;
+            configuracionCalles.appendChild(calleConfig);
+        }
+    });
+
+    // Función para guardar la configuración
+    function guardarConfiguracion() {
+        const cantidadCalles = parseInt(document.getElementById('cantidadCalles').value);
+        lotesPorCalle = [];
+
+        for (let i = 1; i <= cantidadCalles; i++) {
+            const lotesIzquierdo = parseInt(document.getElementById(`lotesLadoIzquierdo_${i}`).value);
+            const lotesDerecho = parseInt(document.getElementById(`lotesLadoDerecho_${i}`).value);
+
+            let calle = {
+                numero: i,
+                lotesIzquierdo: [],
+                lotesDerecho: []
+            };
+
+            // Generar lotes del lado izquierdo
+            for (let j = 1; j <= lotesIzquierdo; j++) {
+                calle.lotesIzquierdo.push({ numero: `L${j}`, estado: 'propietario' });
+            }
+
+            // Generar lotes del lado derecho
+            for (let k = 1; k <= lotesDerecho; k++) {
+                calle.lotesDerecho.push({ numero: `L${k}`, estado: 'propietario' });
+            }
+
+            lotesPorCalle.push(calle);
+        }
+
+        // Guardar en localStorage
+        localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+        generarLotes();
+        alert('Guardado exitoso.');
+        document.querySelector('.configuracion-datos').style.display = 'none';
+        agregarBotonRestaurar();
+        poblarSelectCalleEstado();
     }
 
-    window.onload = function() {
-        generarConfiguracionInicial();
-    };
+    // Función para generar el mapa de lotes basado en la configuración
+    function generarLotes() {
+        const mapa = document.getElementById('mapa');
+        mapa.innerHTML = '';
+
+        lotesPorCalle.forEach(calle => {
+            const divCalle = document.createElement('div');
+            divCalle.classList.add('calle');
+
+            const ladoIzquierdo = document.createElement('div');
+            ladoIzquierdo.classList.add('lado', 'lado-izquierdo');
+            calle.lotesIzquierdo.forEach(lote => {
+                const divLote = crearLoteElemento(calle.numero, lote);
+                ladoIzquierdo.appendChild(divLote);
+            });
+
+            const ladoDerecho = document.createElement('div');
+            ladoDerecho.classList.add('lado');
+            calle.lotesDerecho.forEach(lote => {
+                const divLote = crearLoteElemento(calle.numero, lote);
+                ladoDerecho.appendChild(divLote);
+            });
+
+            const labelCalle = document.createElement('div');
+            labelCalle.classList.add('calle-label');
+            labelCalle.textContent = `Calle ${calle.numero}`;
+
+            divCalle.appendChild(ladoIzquierdo);
+            divCalle.appendChild(labelCalle);
+            divCalle.appendChild(ladoDerecho);
+
+            mapa.appendChild(divCalle);
+        });
+    }
+
+    // Crear elemento de lote
+    function crearLoteElemento(numeroCalle, lote) {
+        const divLote = document.createElement('div');
+        divLote.classList.add('lote');
+        divLote.dataset.calle = numeroCalle;
+        divLote.dataset.lote = lote.numero;
+        divLote.dataset.estado = lote.estado;
+
+        // Aplicar clases de estado
+        aplicarClaseEstado(divLote, lote.estado);
+
+        // Mostrar número de lote
+        const inputLote = document.createElement('input');
+        inputLote.type = 'text';
+        inputLote.value = lote.numero;
+        inputLote.placeholder = 'Lote';
+        inputLote.className = 'lote-input';
+        inputLote.onchange = (e) => {
+            lote.numero = e.target.value;
+            localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+            generarLotes();
+            poblarSelectCalleEstado();
+        };
+
+        divLote.appendChild(inputLote);
+
+        // Manejar clic para selección
+        divLote.addEventListener('click', function() {
+            seleccionarLote(divLote);
+        });
+
+        return divLote;
+    }
+
+    // Función para aplicar clases según el estado
+    function aplicarClaseEstado(element, estado) {
+        element.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso',
+                                 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
+        switch (estado) {
+            case 'propietario':
+                element.classList.add('estado-propietario');
+                break;
+            case 'alquilada':
+                element.classList.add('estado-alquilada');
+                break;
+            case 'en-proceso':
+                element.classList.add('estado-en-proceso');
+                break;
+            case 'en-venta':
+                element.classList.add('estado-en-venta');
+                break;
+            case 'en-alquiler':
+                element.classList.add('estado-en-alquiler');
+                break;
+            case 'ambas':
+                element.classList.add('estado-ambas');
+                break;
+            default:
+                break;
+        }
+    }
+
+    // Función para seleccionar un lote
+    function seleccionarLote(element) {
+        // Remover selección anterior
+        const lotes = document.querySelectorAll('.lote');
+        lotes.forEach(lote => lote.classList.remove('lote-seleccionado'));
+
+        // Seleccionar el lote actual
+        element.classList.add('lote-seleccionado');
+    }
+
+    // Agregar botón para restaurar configuración
+    function agregarBotonRestaurar() {
+        // Verificar si el botón ya existe
+        if (!document.getElementById('botonRestaurar')) {
+            const botonRestaurar = document.createElement('button');
+            botonRestaurar.classList.add('button-save');
+            botonRestaurar.id = 'botonRestaurar';
+            botonRestaurar.innerHTML = '<i class="fas fa-redo"></i> Restaurar Configuración';
+            botonRestaurar.onclick = () => {
+                if (confirm('¿Estás seguro de restaurar la configuración? Se perderán todos los datos actuales.')) {
+                    lotesPorCalle = [];
+                    localStorage.removeItem('lotesPorCalle');
+                    document.getElementById('mapa').innerHTML = '';
+                    document.getElementById('configuracionCalles').innerHTML = '';
+                    document.querySelector('.configuracion-datos').style.display = 'block';
+                    document.getElementById('cantidadCalles').value = 1;
+                    document.querySelector('.sidebar').removeChild(botonRestaurar);
+                    limpiarSelectActualizarDatos();
+                }
+            };
+
+            document.querySelector('.sidebar').appendChild(botonRestaurar);
+        }
+    }
+
+    // Limpiar selectores de la sección Actualizar Datos de Lotes
+    function limpiarSelectActualizarDatos() {
+        const selectCalle = document.getElementById('selectCalleEstado');
+        const selectLote = document.getElementById('selectLoteEstado');
+        selectCalle.innerHTML = '<option value="">Seleccione una calle</option>';
+        selectLote.innerHTML = '<option value="">Seleccione un lote</option>';
+    }
+
+    // Función para poblar el selector de calles en "Actualizar Datos de Lotes"
+    function poblarSelectCalleEstado() {
+        const selectCalle = document.getElementById('selectCalleEstado');
+        selectCalle.innerHTML = '<option value="">Seleccione una calle</option>';
+
+        lotesPorCalle.forEach(calle => {
+            const option = document.createElement('option');
+            option.value = calle.numero;
+            option.textContent = `Calle ${calle.numero}`;
+            selectCalle.appendChild(option);
+        });
+    }
+
+    // Función para actualizar las opciones de lotes según la calle seleccionada
+    function actualizarOpcionesLotesEstado() {
+        const numeroCalle = document.getElementById('selectCalleEstado').value;
+        const selectLote = document.getElementById('selectLoteEstado');
+        selectLote.innerHTML = '<option value="">Seleccione un lote</option>';
+
+        if (numeroCalle === "") return;
+
+        const calle = lotesPorCalle.find(c => c.numero == numeroCalle);
+        if (!calle) return;
+
+        const lotes = [...calle.lotesIzquierdo, ...calle.lotesDerecho];
+        lotes.forEach(lote => {
+            const option = document.createElement('option');
+            option.value = lote.numero;
+            option.textContent = lote.numero;
+            selectLote.appendChild(option);
+        });
+    }
+
+    // Función para actualizar el estado de un lote
+    function actualizarEstadoLote() {
+        const numeroCalle = document.getElementById('selectCalleEstado').value;
+        const numeroLote = document.getElementById('selectLoteEstado').value;
+        const estado = document.getElementById('selectEstado').value;
+
+        if (numeroCalle === "" || numeroLote === "" || estado === "") {
+            alert('Por favor, selecciona una calle, un lote y un estado.');
+            return;
+        }
+
+        const calle = lotesPorCalle.find(c => c.numero == numeroCalle);
+        if (!calle) {
+            alert('Calle no encontrada.');
+            return;
+        }
+
+        // Buscar el lote en ambos lados
+        let lote = calle.lotesIzquierdo.find(l => l.numero === numeroLote);
+        let lado = 'izquierdo';
+        if (!lote) {
+            lote = calle.lotesDerecho.find(l => l.numero === numeroLote);
+            lado = 'derecho';
+        }
+
+        if (!lote) {
+            alert('Lote no encontrado.');
+            return;
+        }
+
+        // Actualizar el estado
+        lote.estado = estado;
+
+        // Actualizar el mapa
+        generarLotes();
+
+        // Guardar en localStorage
+        localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+        alert('Estado del lote actualizado exitosamente.');
+    }
+
+    // Función para mostrar el formulario desde el estado
+    function mostrarFormularioDesdeEstado() {
+        const numeroCalle = document.getElementById('selectCalleEstado').value;
+        const numeroLote = document.getElementById('selectLoteEstado').value;
+
+        if (numeroCalle === "" || numeroLote === "") {
+            alert('Por favor, selecciona una calle y un lote para editar.');
+            return;
+        }
+
+        // Buscar el lote en la configuración
+        const calle = lotesPorCalle.find(c => c.numero == numeroCalle);
+        if (!calle) {
+            alert('Calle no encontrada.');
+            return;
+        }
+
+        let lote = calle.lotesIzquierdo.find(l => l.numero === numeroLote);
+        let lado = 'izquierdo';
+        if (!lote) {
+            lote = calle.lotesDerecho.find(l => l.numero === numeroLote);
+            lado = 'derecho';
+        }
+
+        if (!lote) {
+            alert('Lote no encontrado.');
+            return;
+        }
+
+        // Mostrar el formulario con los datos del lote
+        document.getElementById('formularioLote').style.display = 'block';
+        document.getElementById('propietario').value = lote.propietario || '';
+        document.getElementById('inquilino').value = lote.inquilino || '';
+        document.getElementById('fechaDesde').value = lote.fechaDesde || '';
+        document.getElementById('fechaHasta').value = lote.fechaHasta || '';
+        document.getElementById('enProceso').value = lote.enProceso || '';
+
+        // Manejar archivos adjuntos si es necesario
+        if (lote.archivo) {
+            document.getElementById('enlaceArchivo').href = lote.archivo.url;
+            document.getElementById('enlaceArchivo').textContent = lote.archivo.nombre;
+            document.getElementById('archivoAdjunto').style.display = 'block';
+            document.getElementById('botonBorrarArchivo').style.display = 'inline-block';
+        } else {
+            document.getElementById('archivoAdjunto').style.display = 'none';
+            document.getElementById('previsualizacionArchivo').style.display = 'none';
+            document.getElementById('botonBorrarArchivo').style.display = 'none';
+        }
+
+        // Guardar referencia al lote actual
+        formularioLote.currentLote = lote;
+    }
+
+    // Funciones para el formulario de editar datos del lote
+    function guardarDatosLote() {
+        const lote = formularioLote.currentLote;
+        if (!lote) {
+            alert('No se ha seleccionado ningún lote para editar.');
+            return;
+        }
+
+        lote.propietario = document.getElementById('propietario').value;
+        lote.inquilino = document.getElementById('inquilino').value;
+        lote.fechaDesde = document.getElementById('fechaDesde').value;
+        lote.fechaHasta = document.getElementById('fechaHasta').value;
+        lote.enProceso = document.getElementById('enProceso').value;
+
+        // Manejar archivo adjunto
+        const archivoInput = document.getElementById('archivo');
+        if (archivoInput.files.length > 0) {
+            const archivo = archivoInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                lote.archivo = {
+                    nombre: archivo.name,
+                    url: e.target.result
+                };
+                document.getElementById('previsualizacionArchivo').src = e.target.result;
+                document.getElementById('previsualizacionArchivo').style.display = 'block';
+                document.getElementById('enlaceArchivo').href = e.target.result;
+                document.getElementById('enlaceArchivo').textContent = archivo.name;
+                document.getElementById('archivoAdjunto').style.display = 'block';
+                document.getElementById('botonBorrarArchivo').style.display = 'inline-block';
+
+                // Guardar en localStorage
+                localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+                alert('Datos del lote guardados exitosamente.');
+                cerrarFormulario();
+            };
+            reader.readAsDataURL(archivo);
+        } else {
+            // Guardar en localStorage
+            localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+            alert('Datos del lote guardados exitosamente.');
+            cerrarFormulario();
+        }
+
+        generarLotes();
+        poblarSelectCalleEstado();
+    }
+
+    function cerrarFormulario() {
+        document.getElementById('formularioLote').style.display = 'none';
+        // Limpiar formulario
+        document.getElementById('formularioLote').reset();
+        document.getElementById('previsualizacionArchivo').style.display = 'none';
+        document.getElementById('archivoAdjunto').style.display = 'none';
+        document.getElementById('botonBorrarArchivo').style.display = 'none';
+        formularioLote.currentLote = null;
+    }
+
+    function borrarArchivoAdjunto() {
+        const lote = formularioLote.currentLote;
+        if (lote) {
+            lote.archivo = null;
+            document.getElementById('archivoAdjunto').style.display = 'none';
+            document.getElementById('previsualizacionArchivo').style.display = 'none';
+            document.getElementById('archivo').value = '';
+            document.getElementById('botonBorrarArchivo').style.display = 'none';
+
+            // Guardar en localStorage
+            localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+            alert('Archivo adjunto borrado.');
+        }
+    }
+
+    // Manejar la previsualización de archivos
+    document.getElementById('archivo').addEventListener('change', function(event) {
+        const archivo = event.target.files[0];
+        if (archivo) {
+            const previsualizacion = document.getElementById('previsualizacionArchivo');
+            const archivoAdjunto = document.getElementById('archivoAdjunto');
+            const enlaceArchivo = document.getElementById('enlaceArchivo');
+
+            if (archivo.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previsualizacion.src = e.target.result;
+                    previsualizacion.style.display = 'block';
+                };
+                reader.readAsDataURL(archivo);
+            } else {
+                previsualizacion.style.display = 'none';
+            }
+
+            // Crear un objeto URL para el archivo
+            const urlArchivo = URL.createObjectURL(archivo);
+            enlaceArchivo.href = urlArchivo;
+            enlaceArchivo.textContent = archivo.name;
+            archivoAdjunto.style.display = 'block';
+            document.getElementById('botonBorrarArchivo').style.display = 'inline-block';
+        }
+    });
 </script>
 
 </body>
