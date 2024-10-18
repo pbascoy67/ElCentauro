@@ -485,10 +485,14 @@
             </select>
             <label for="selectEstado">Estado:</label>
             <select id="selectEstado">
-                <!-- Solo tres opciones: Propietario, Alquilada y En Proceso -->
+                <!-- Opciones: Propietario, Alquilada, En Proceso -->
+                <option value="">Seleccione</option>
                 <option value="propietario">Propietario</option>
                 <option value="alquilada">Alquilada</option>
                 <option value="en-proceso">En Proceso</option>
+                <option value="en-venta">En Venta</option>
+                <option value="en-alquiler">En Alquiler</option>
+                <option value="ambas">Ambas</option>
             </select>
             <button onclick="actualizarEstadoLote()" class="btn-actualizar">
                 <i class="fas fa-sync-alt"></i> Actualizar Lote
@@ -510,97 +514,95 @@
             <!-- Calle 1 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo1">
-                    <div class="lote">1</div>
-                    <div class="lote">2</div>
-                    <div class="lote">3</div>
+                    <div class="lote" data-calle="1" data-id="1">1</div>
+                    <div class="lote" data-calle="1" data-id="2">2</div>
+                    <div class="lote" data-calle="1" data-id="3">3</div>
                 </div>
                 <div class="calle-label">Calle 1</div>
                 <div class="lado" id="ladoDerecho1">
-                    <div class="lote">4</div>
-                    <div class="lote">5</div>
+                    <div class="lote" data-calle="1" data-id="4">4</div>
+                    <div class="lote" data-calle="1" data-id="5">5</div>
                 </div>
             </div>
             <!-- Calle 2 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo2">
-                    <div class="lote">6</div>
-                    <div class="lote">7</div>
+                    <div class="lote" data-calle="2" data-id="6">6</div>
+                    <div class="lote" data-calle="2" data-id="7">7</div>
                 </div>
                 <div class="calle-label">Calle 2</div>
                 <div class="lado" id="ladoDerecho2">
-                    <div class="lote">8</div>
-                    <div class="lote">9</div>
+                    <div class="lote" data-calle="2" data-id="8">8</div>
+                    <div class="lote" data-calle="2" data-id="9">9</div>
                 </div>
             </div>
             <!-- Calle 3 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo3">
-                    <div class="lote">10</div>
-                    <div class="lote">11</div>
+                    <div class="lote" data-calle="3" data-id="10">10</div>
+                    <div class="lote" data-calle="3" data-id="11">11</div>
                 </div>
                 <div class="calle-label">Calle 3</div>
                 <div class="lado" id="ladoDerecho3">
-                    <div class="lote">12</div>
-                    <div class="lote">13</div>
+                    <div class="lote" data-calle="3" data-id="12">12</div>
+                    <div class="lote" data-calle="3" data-id="13">13</div>
                 </div>
             </div>
             <!-- Calle 4 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo4">
-                    <div class="lote">14</div>
-                    <div class="lote">15</div>
+                    <div class="lote" data-calle="4" data-id="14">14</div>
+                    <div class="lote" data-calle="4" data-id="15">15</div>
                 </div>
                 <div class="calle-label">Calle 4</div>
                 <div class="lado" id="ladoDerecho4">
-                    <div class="lote">16</div>
-                    <div class="lote">17</div>
+                    <div class="lote" data-calle="4" data-id="16">16</div>
+                    <div class="lote" data-calle="4" data-id="17">17</div>
                 </div>
             </div>
             <!-- Calle 5 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo5">
-                    <div class="lote">18</div>
-                    <div class="lote">19</div>
+                    <div class="lote" data-calle="5" data-id="18">18</div>
+                    <div class="lote" data-calle="5" data-id="19">19</div>
                 </div>
                 <div class="calle-label">Calle 5</div>
                 <div class="lado" id="ladoDerecho5">
-                    <div class="lote">20</div>
-                    <div class="lote">21</div>
+                    <div class="lote" data-calle="5" data-id="20">20</div>
+                    <div class="lote" data-calle="5" data-id="21">21</div>
                 </div>
             </div>
             <!-- Calle 6 -->
             <div class="calle">
                 <div class="lado lado-izquierdo" id="ladoIzquierdo6">
-                    <div class="lote">22</div>
-                    <div class="lote">23</div>
+                    <div class="lote" data-calle="6" data-id="22">22</div>
+                    <div class="lote" data-calle="6" data-id="23">23</div>
                 </div>
                 <div class="calle-label">Calle 6</div>
                 <div class="lado" id="ladoDerecho6">
-                    <div class="lote">24</div>
-                    <div class="lote">25</div>
+                    <div class="lote" data-calle="6" data-id="24">24</div>
+                    <div class="lote" data-calle="6" data-id="25">25</div>
                 </div>
             </div>
             <!-- Calle 7 -->
             <div class="calle">
-                <!-- Lote 1 en la parte superior izquierda -->
                 <div class="lado lado-izquierdo" id="ladoIzquierdo7">
-                    <div class="lote">1</div>
-                    <div class="lote">13</div>
-                    <div class="lote">12</div>
-                    <div class="lote">11</div>
-                    <div class="lote">10</div>
-                    <div class="lote">9</div>
-                    <div class="lote">8</div>
+                    <div class="lote" data-calle="7" data-id="26">26</div>
+                    <div class="lote" data-calle="7" data-id="27">27</div>
+                    <div class="lote" data-calle="7" data-id="28">28</div>
+                    <div class="lote" data-calle="7" data-id="29">29</div>
+                    <div class="lote" data-calle="7" data-id="30">30</div>
+                    <div class="lote" data-calle="7" data-id="31">31</div>
+                    <div class="lote" data-calle="7" data-id="32">32</div>
                 </div>
                 <div class="calle-label">Calle 7</div>
-                <!-- Lotes 2 al 7 en el lado derecho -->
                 <div class="lado" id="ladoDerecho7">
-                    <div class="lote">2</div>
-                    <div class="lote">3</div>
-                    <div class="lote">4</div>
-                    <div class="lote">5</div>
-                    <div class="lote">6</div>
-                    <div class="lote">7</div>
+                    <div class="lote" data-calle="7" data-id="33">33</div>
+                    <div class="lote" data-calle="7" data-id="34">34</div>
+                    <div class="lote" data-calle="7" data-id="35">35</div>
+                    <div class="lote" data-calle="7" data-id="36">36</div>
+                    <div class="lote" data-calle="7" data-id="37">37</div>
+                    <div class="lote" data-calle="7" data-id="38">38</div>
                 </div>
             </div>
         </div>
@@ -656,7 +658,7 @@
 </div>
 
 <script>
-    // Definición de lotes para cada calle
+    // Definición de lotes para cada calle con IDs únicos
     let lotesCalle1 = [
         { id: '1', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
         { id: '2', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
@@ -695,19 +697,19 @@
         { id: '25', lado: 'derecho', estado: '', datos: {}, elemento: null },
     ];
     let lotesCalle7 = [
-        { id: '1', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '2', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '3', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '4', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '5', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '6', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '7', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '8', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '9', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '10', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '11', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '12', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '13', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+        { id: '26', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+        { id: '27', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '28', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '29', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '30', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '31', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '32', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '33', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '34', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '35', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '36', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '37', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        { id: '38', lado: 'derecho', estado: '', datos: {}, elemento: null },
     ];
 
     // Variable global para el lote actual
@@ -759,7 +761,7 @@
         generarLotesPorCalle('4', lotesCalle4);
         generarLotesPorCalle('5', lotesCalle5);
         generarLotesPorCalle('6', lotesCalle6);
-        generarLotesPorCalle('7', lotesCalle7);
+        generarLotesPorCalle('7', lotesCalle7, false); // Calle 7 no agrega espacio extra
     }
 
     function generarLotesPorCalle(numeroCalle, lotesCalle, agregarEspacioExtra = true) {
@@ -779,10 +781,13 @@
                 lote.id = e.target.value;
                 generarOpcionesCallesEstado();
                 actualizarOpcionesLotesEstado();
+                guardarConfiguracion(); // Guardar cambios automáticamente
             };
 
             const divLote = document.createElement('div');
             divLote.classList.add('lote');
+            divLote.setAttribute('data-calle', numeroCalle);
+            divLote.setAttribute('data-id', lote.id);
 
             // Aplicar clase de estado si existe
             if (lote.estado) {
@@ -795,26 +800,7 @@
             }
 
             // Añadir asteriscos
-            // Primero, eliminar cualquier asterisco existente para evitar duplicados
-            const existingAsteriscos = divLote.querySelectorAll('.asterisco');
-            existingAsteriscos.forEach(a => divLote.removeChild(a));
-
-            if (lote.datos && (lote.datos.propietario || lote.datos.inquilino || lote.datos.fechaDesde || lote.datos.fechaHasta || lote.datos.enProceso || lote.datos.archivo)) {
-                // Añadir un asterisco para indicar que hay datos
-                const asterisco1 = document.createElement('span');
-                asterisco1.textContent = '*';
-                asterisco1.className = 'asterisco';
-                divLote.appendChild(asterisco1);
-
-                // Añadir un segundo asterisco si hay un archivo adjunto
-                if (lote.datos.archivo && lote.datos.archivoNombre) {
-                    const asterisco2 = document.createElement('span');
-                    asterisco2.textContent = '*';
-                    asterisco2.className = 'asterisco';
-                    asterisco2.style.right = '18px'; // Ajustar posición para el segundo asterisco
-                    divLote.appendChild(asterisco2);
-                }
-            }
+            actualizarAsteriscos(lote, divLote);
 
             // Añadir ícono de archivo adjunto si existe (con Font Awesome)
             if (lote.datos && lote.datos.archivo && lote.datos.archivoNombre) {
@@ -855,6 +841,11 @@
             option.textContent = `Calle ${i}`;
             selectCalleEstado.appendChild(option);
         }
+
+        // Seleccionar la primera calle por defecto
+        if (selectCalleEstado.options.length > 0) {
+            selectCalleEstado.selectedIndex = 0;
+        }
     }
 
     function actualizarOpcionesLotesEstado() {
@@ -869,9 +860,6 @@
             return;
         }
 
-        // Eliminar la ordenación para mantener el orden original de los lotes
-        // lotesCalle.sort((a, b) => parseInt(a.id) - parseInt(b.id));
-
         lotesCalle.forEach(lote => {
             if (lote.id) {
                 const option = document.createElement('option');
@@ -880,6 +868,11 @@
                 selectLoteEstado.appendChild(option);
             }
         });
+
+        // Seleccionar la primera opción por defecto
+        if (selectLoteEstado.options.length > 0) {
+            selectLoteEstado.selectedIndex = 0;
+        }
     }
 
     function obtenerLotesCalle(numeroCalle) {
@@ -928,10 +921,17 @@
         lote.elemento.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso', 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
 
         // Añadir la clase de estado correspondiente
-        lote.elemento.classList.add(`estado-${estado}`);
+        if (estado) {
+            lote.elemento.classList.add(`estado-${estado}`);
+        }
 
         // Actualizar asteriscos
-        actualizarAsteriscos(lote);
+        actualizarAsteriscos(lote, lote.elemento);
+
+        // Actualizar tooltip
+        actualizarTooltips(lote);
+
+        guardarConfiguracion(); // Guardar cambios automáticamente
 
         alert(`Estado del Lote ${idLote} en Calle ${numeroCalle} actualizado a ${estado}.`);
     }
@@ -1114,7 +1114,10 @@
         }
 
         // Actualizar asteriscos
-        actualizarAsteriscos(loteActual);
+        actualizarAsteriscos(loteActual, loteActual.elemento);
+
+        // Actualizar tooltip
+        actualizarTooltips(loteActual);
 
         // Añadir o remover ícono de archivo adjunto
         const existingIconoArchivo = loteActual.elemento.querySelector('.icono-archivo');
@@ -1132,18 +1135,21 @@
 
         cerrarFormulario();
         loteActual = null;
+
+        guardarConfiguracion(); // Guardar cambios automáticamente
     }
 
-    function actualizarAsteriscos(lote) {
-        const existingAsteriscos = lote.elemento.querySelectorAll('.asterisco');
-        existingAsteriscos.forEach(a => lote.elemento.removeChild(a));
+    function actualizarAsteriscos(lote, divLote) {
+        // Remover asteriscos existentes
+        const existingAsteriscos = divLote.querySelectorAll('.asterisco');
+        existingAsteriscos.forEach(a => divLote.removeChild(a));
 
         if (lote.datos && (lote.datos.propietario || lote.datos.inquilino || lote.datos.fechaDesde || lote.datos.fechaHasta || lote.datos.enProceso || lote.datos.archivo)) {
             // Añadir un asterisco para indicar que hay datos
             const asterisco1 = document.createElement('span');
             asterisco1.textContent = '*';
             asterisco1.className = 'asterisco';
-            lote.elemento.appendChild(asterisco1);
+            divLote.appendChild(asterisco1);
 
             // Añadir un segundo asterisco si hay un archivo adjunto
             if (lote.datos.archivo && lote.datos.archivoNombre) {
@@ -1151,7 +1157,7 @@
                 asterisco2.textContent = '*';
                 asterisco2.className = 'asterisco';
                 asterisco2.style.right = '18px'; // Ajustar posición para el segundo asterisco
-                lote.elemento.appendChild(asterisco2);
+                divLote.appendChild(asterisco2);
             }
         }
     }
@@ -1191,7 +1197,12 @@
         botonBorrarArchivo.style.display = 'none';
 
         // Actualizar asteriscos
-        actualizarAsteriscos(loteActual);
+        actualizarAsteriscos(loteActual, loteActual.elemento);
+
+        // Actualizar tooltip
+        actualizarTooltips(loteActual);
+
+        guardarConfiguracion(); // Guardar cambios automáticamente
 
         alert('Archivo adjunto borrado correctamente.');
     }
@@ -1253,27 +1264,8 @@
                     lote.elemento.classList.add(`estado-${lote.datos.enProceso}`);
                 }
 
-                // Añadir asteriscos
-                // Primero, eliminar cualquier asterisco existente para evitar duplicados
-                const existingAsteriscos = lote.elemento.querySelectorAll('.asterisco');
-                existingAsteriscos.forEach(a => lote.elemento.removeChild(a));
-
-                if (lote.datos && (lote.datos.propietario || lote.datos.inquilino || lote.datos.fechaDesde || lote.datos.fechaHasta || lote.datos.enProceso || lote.datos.archivo)) {
-                    // Añadir un asterisco para indicar que hay datos
-                    const asterisco1 = document.createElement('span');
-                    asterisco1.textContent = '*';
-                    asterisco1.className = 'asterisco';
-                    lote.elemento.appendChild(asterisco1);
-
-                    // Añadir un segundo asterisco si hay un archivo adjunto
-                    if (lote.datos.archivo && lote.datos.archivoNombre) {
-                        const asterisco2 = document.createElement('span');
-                        asterisco2.textContent = '*';
-                        asterisco2.className = 'asterisco';
-                        asterisco2.style.right = '18px'; // Ajustar posición para el segundo asterisco
-                        lote.elemento.appendChild(asterisco2);
-                    }
-                }
+                // Actualizar asteriscos
+                actualizarAsteriscos(lote, lote.elemento);
 
                 // Añadir ícono de archivo adjunto si existe (con Font Awesome)
                 const existingIconoArchivo = lote.elemento.querySelector('.icono-archivo');
@@ -1320,7 +1312,6 @@
             lote.classList.remove('lote-seleccionado');
         });
     }
-
 </script>
 
 </body>
