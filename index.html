@@ -6,7 +6,7 @@
     <!-- Google Fonts: Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papJ5m56Yp6Mnj/X+f2FeEm3bKGrwq6G8eZY5Fzh0Y8Hb0NgnYldxL2XhCU2uPq2GZfQG4xCkN0Z9oQc8g8jQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -660,665 +660,692 @@
 </div>
 
 <!-- Bootstrap JS y sus dependencias -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdLsIs/3FkYJ4UEE/W8AUncey/BMGQMyHKnsDdaJeXQoylZxCGSwyCjsBg90HG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu0B4V8GN4UgyHmqstgxRYTcHo1imF2lrZ6Uco26yOgZShNuh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-XZ5MQq+nzE3aS3iN9hLaD/I3saJjCQGjf/Tz6C3m3bRRe3r9E1DBR8K1JX9q2iu4" crossorigin="anonymous"></script>
 
 <script>
-    // Definición de lotes para cada calle con IDs únicos
-    let lotesCalle1 = [
-        { id: '1', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '2', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '3', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '4', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '5', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle2 = [
-        { id: '6', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '7', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '8', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '9', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle3 = [
-        { id: '10', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '11', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '12', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '13', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle4 = [
-        { id: '14', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '15', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '16', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '17', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle5 = [
-        { id: '18', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '19', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '20', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '21', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle6 = [
-        { id: '22', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '23', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '24', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '25', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
-    let lotesCalle7 = [
-        { id: '26', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
-        { id: '27', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '28', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '29', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '30', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '31', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '32', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '33', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '34', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '35', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '36', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '37', lado: 'derecho', estado: '', datos: {}, elemento: null },
-        { id: '38', lado: 'derecho', estado: '', datos: {}, elemento: null },
-    ];
+    document.addEventListener('DOMContentLoaded', () => {
+        // Definición de lotes para cada calle con IDs únicos
+        let lotesCalle1 = [
+            { id: '1', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '2', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '3', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '4', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '5', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle2 = [
+            { id: '6', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '7', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '8', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '9', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle3 = [
+            { id: '10', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '11', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '12', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '13', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle4 = [
+            { id: '14', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '15', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '16', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '17', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle5 = [
+            { id: '18', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '19', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '20', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '21', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle6 = [
+            { id: '22', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '23', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '24', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '25', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
+        let lotesCalle7 = [
+            { id: '26', lado: 'izquierdo', estado: '', datos: {}, elemento: null },
+            { id: '27', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '28', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '29', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '30', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '31', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '32', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '33', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '34', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '35', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '36', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '37', lado: 'derecho', estado: '', datos: {}, elemento: null },
+            { id: '38', lado: 'derecho', estado: '', datos: {}, elemento: null },
+        ];
 
-    // Variable global para el lote actual
-    let loteActual;
+        // Variable global para el lote actual
+        let loteActual = null;
 
-    window.onload = function() {
-        // Cargar lotes desde localStorage
-        if (localStorage.getItem('lotesCalle1')) {
-            lotesCalle1 = JSON.parse(localStorage.getItem('lotesCalle1'));
-        }
-        if (localStorage.getItem('lotesCalle2')) {
-            lotesCalle2 = JSON.parse(localStorage.getItem('lotesCalle2'));
-        }
-        if (localStorage.getItem('lotesCalle3')) {
-            lotesCalle3 = JSON.parse(localStorage.getItem('lotesCalle3'));
-        }
-        if (localStorage.getItem('lotesCalle4')) {
-            lotesCalle4 = JSON.parse(localStorage.getItem('lotesCalle4'));
-        }
-        if (localStorage.getItem('lotesCalle5')) {
-            lotesCalle5 = JSON.parse(localStorage.getItem('lotesCalle5'));
-        }
-        if (localStorage.getItem('lotesCalle6')) {
-            lotesCalle6 = JSON.parse(localStorage.getItem('lotesCalle6'));
-        }
-        if (localStorage.getItem('lotesCalle7')) {
-            lotesCalle7 = JSON.parse(localStorage.getItem('lotesCalle7'));
+        // Cargar lotes desde localStorage si existen
+        function cargarLotes() {
+            const nombresCalles = ['lotesCalle1', 'lotesCalle2', 'lotesCalle3', 'lotesCalle4', 'lotesCalle5', 'lotesCalle6', 'lotesCalle7'];
+            const lotesVariables = [lotesCalle1, lotesCalle2, lotesCalle3, lotesCalle4, lotesCalle5, lotesCalle6, lotesCalle7];
+            nombresCalles.forEach((nombre, index) => {
+                const data = localStorage.getItem(nombre);
+                if (data) {
+                    try {
+                        lotesVariables[index] = JSON.parse(data);
+                        console.log(`Cargados lotes de ${nombre}`);
+                    } catch (error) {
+                        console.error(`Error al parsear ${nombre}:`, error);
+                    }
+                }
+            });
         }
 
-        generarLotes();
-        generarOpcionesCallesEstado(); // Genera las opciones de calles
-        actualizarOpcionesLotesEstado(); // Genera las opciones de lotes según la calle seleccionada
-
-        // Restaurar estados y eventos
-        restaurarEstados(lotesCalle1);
-        restaurarEstados(lotesCalle2);
-        restaurarEstados(lotesCalle3);
-        restaurarEstados(lotesCalle4);
-        restaurarEstados(lotesCalle5);
-        restaurarEstados(lotesCalle6);
-        restaurarEstados(lotesCalle7);
-    };
-
-    function generarLotes() {
-        // Generar lotes para cada calle
-        generarLotesPorCalle('1', lotesCalle1);
-        generarLotesPorCalle('2', lotesCalle2);
-        generarLotesPorCalle('3', lotesCalle3);
-        generarLotesPorCalle('4', lotesCalle4);
-        generarLotesPorCalle('5', lotesCalle5);
-        generarLotesPorCalle('6', lotesCalle6);
-        generarLotesPorCalle('7', lotesCalle7, false); // Calle 7 no agrega espacio extra
-    }
-
-    function generarLotesPorCalle(numeroCalle, lotesCalle, agregarEspacioExtra = true) {
-        const ladoIzquierdo = document.getElementById(`ladoIzquierdo${numeroCalle}`);
-        const ladoDerecho = document.getElementById(`ladoDerecho${numeroCalle}`);
-
-        ladoIzquierdo.innerHTML = '';
-        ladoDerecho.innerHTML = agregarEspacioExtra ? '<div class="espacio-extra"></div>' : '';
-
-        lotesCalle.forEach((lote, index) => {
-            const inputLote = document.createElement('input');
-            inputLote.type = 'text';
-            inputLote.value = lote.id || '';
-            inputLote.placeholder = 'Lote';
-            inputLote.className = 'lote-input';
-            inputLote.onchange = (e) => {
-                lote.id = e.target.value;
-                generarOpcionesCallesEstado();
-                actualizarOpcionesLotesEstado();
-                guardarConfiguracion(); // Guardar cambios automáticamente
-            };
-
-            const divLote = document.createElement('div');
-            divLote.classList.add('lote');
-            divLote.setAttribute('data-calle', numeroCalle);
-            divLote.setAttribute('data-id', lote.id);
-
-            // Aplicar clase de estado si existe
-            if (lote.estado) {
-                divLote.classList.add(`estado-${lote.estado}`);
-            }
-
-            // Si tiene datos de "En Proceso de", aplicamos la clase correspondiente
-            if (lote.datos && lote.datos.enProceso) {
-                divLote.classList.add(`estado-${lote.datos.enProceso}`);
-            }
-
-            // Añadir asteriscos
-            actualizarAsteriscos(lote, divLote);
-
-            // Añadir ícono de archivo adjunto si existe (con Font Awesome)
-            if (lote.datos && lote.datos.archivo && lote.datos.archivoNombre) {
-                const iconoArchivo = document.createElement('i');
-                iconoArchivo.className = 'fas fa-paperclip icono-archivo';
-                divLote.appendChild(iconoArchivo);
-            }
-
-            divLote.appendChild(inputLote);
-
-            // Agregar evento click para abrir el formulario de edición
-            divLote.onclick = (e) => {
-                // Evitar que el click en el input active el evento
-                if (e.target.tagName.toLowerCase() === 'input') return;
-
-                loteActual = lote;
-                abrirFormulario();
-            };
-
-            if (lote.lado === 'izquierdo') {
-                ladoIzquierdo.appendChild(divLote);
-            } else {
-                ladoDerecho.appendChild(divLote);
-            }
-
-            // Guardar referencia al elemento divLote
-            lote.elemento = divLote;
-        });
-    }
-
-    function generarOpcionesCallesEstado() {
-        const selectCalleEstado = document.getElementById('selectCalleEstado');
-        selectCalleEstado.innerHTML = '';
-
-        for (let i = 1; i <= 7; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = `Calle ${i}`;
-            selectCalleEstado.appendChild(option);
+        // Generar lotes en el DOM
+        function generarLotes() {
+            // Generar lotes para cada calle
+            generarLotesPorCalle('1', lotesCalle1);
+            generarLotesPorCalle('2', lotesCalle2);
+            generarLotesPorCalle('3', lotesCalle3);
+            generarLotesPorCalle('4', lotesCalle4);
+            generarLotesPorCalle('5', lotesCalle5);
+            generarLotesPorCalle('6', lotesCalle6);
+            generarLotesPorCalle('7', lotesCalle7, false); // Calle 7 no agrega espacio extra
         }
 
-        // Seleccionar la primera calle por defecto
-        if (selectCalleEstado.options.length > 0) {
-            selectCalleEstado.selectedIndex = 0;
+        function generarLotesPorCalle(numeroCalle, lotesCalle, agregarEspacioExtra = true) {
+            const ladoIzquierdo = document.getElementById(`ladoIzquierdo${numeroCalle}`);
+            const ladoDerecho = document.getElementById(`ladoDerecho${numeroCalle}`);
+
+            ladoIzquierdo.innerHTML = '';
+            ladoDerecho.innerHTML = agregarEspacioExtra ? '<div class="espacio-extra"></div>' : '';
+
+            lotesCalle.forEach((lote, index) => {
+                const inputLote = document.createElement('input');
+                inputLote.type = 'text';
+                inputLote.value = lote.id || '';
+                inputLote.placeholder = 'Lote';
+                inputLote.className = 'lote-input';
+                inputLote.onchange = (e) => {
+                    lote.id = e.target.value;
+                    generarOpcionesCallesEstado();
+                    actualizarOpcionesLotesEstado();
+                    guardarConfiguracion(); // Guardar cambios automáticamente
+                };
+
+                const divLote = document.createElement('div');
+                divLote.classList.add('lote');
+                divLote.setAttribute('data-calle', numeroCalle);
+                divLote.setAttribute('data-id', lote.id);
+
+                // Aplicar clase de estado si existe
+                if (lote.estado) {
+                    divLote.classList.add(`estado-${lote.estado}`);
+                }
+
+                // Si tiene datos de "En Proceso de", aplicamos la clase correspondiente
+                if (lote.datos && lote.datos.enProceso) {
+                    divLote.classList.add(`estado-${lote.datos.enProceso}`);
+                }
+
+                // Añadir asteriscos
+                actualizarAsteriscos(lote, divLote);
+
+                // Añadir ícono de archivo adjunto si existe (con Font Awesome)
+                if (lote.datos && lote.datos.archivo && lote.datos.archivoNombre) {
+                    const iconoArchivo = document.createElement('i');
+                    iconoArchivo.className = 'fas fa-paperclip icono-archivo';
+                    divLote.appendChild(iconoArchivo);
+                }
+
+                divLote.appendChild(inputLote);
+
+                // Agregar evento click para abrir el formulario de edición
+                divLote.addEventListener('click', (e) => {
+                    // Evitar que el click en el input active el evento
+                    if (e.target.tagName.toLowerCase() === 'input') return;
+
+                    loteActual = lote;
+                    abrirFormulario();
+                });
+
+                if (lote.lado === 'izquierdo') {
+                    ladoIzquierdo.appendChild(divLote);
+                } else {
+                    ladoDerecho.appendChild(divLote);
+                }
+
+                // Guardar referencia al elemento divLote
+                lote.elemento = divLote;
+            });
         }
-    }
 
-    function actualizarOpcionesLotesEstado() {
-        const selectCalleEstado = document.getElementById('selectCalleEstado');
-        const selectLoteEstado = document.getElementById('selectLoteEstado');
-        const numeroCalle = selectCalleEstado.value;
-        selectLoteEstado.innerHTML = '';
+        // Generar opciones de calles en el select
+        function generarOpcionesCallesEstado() {
+            const selectCalleEstado = document.getElementById('selectCalleEstado');
+            selectCalleEstado.innerHTML = '';
 
-        let lotesCalle = obtenerLotesCalle(numeroCalle);
-        if (!lotesCalle) {
-            alert('Calle no válida.');
-            return;
-        }
-
-        lotesCalle.forEach(lote => {
-            if (lote.id) {
+            for (let i = 1; i <= 7; i++) {
                 const option = document.createElement('option');
-                option.value = lote.id;
-                option.textContent = `Lote ${lote.id}`;
-                selectLoteEstado.appendChild(option);
+                option.value = i;
+                option.textContent = `Calle ${i}`;
+                selectCalleEstado.appendChild(option);
             }
-        });
 
-        // Seleccionar la primera opción por defecto
-        if (selectLoteEstado.options.length > 0) {
-            selectLoteEstado.selectedIndex = 0;
-        }
-    }
-
-    function obtenerLotesCalle(numeroCalle) {
-        const lotes = {
-            '1': lotesCalle1,
-            '2': lotesCalle2,
-            '3': lotesCalle3,
-            '4': lotesCalle4,
-            '5': lotesCalle5,
-            '6': lotesCalle6,
-            '7': lotesCalle7
-        };
-        return lotes[numeroCalle] || null;
-    }
-
-    function actualizarEstadoLote() {
-        const selectCalleEstado = document.getElementById('selectCalleEstado');
-        const selectLoteEstado = document.getElementById('selectLoteEstado');
-        const selectEstado = document.getElementById('selectEstado');
-        const numeroCalle = selectCalleEstado.value;
-        const idLote = selectLoteEstado.value;
-        const estado = selectEstado.value;
-
-        if (!idLote) {
-            alert('Por favor, selecciona un lote válido.');
-            return;
+            // Seleccionar la primera calle por defecto
+            if (selectCalleEstado.options.length > 0) {
+                selectCalleEstado.selectedIndex = 0;
+            }
         }
 
-        let lotesCalle = obtenerLotesCalle(numeroCalle);
-        if (!lotesCalle) {
-            alert('Calle no válida.');
-            return;
+        // Actualizar opciones de lotes según la calle seleccionada
+        function actualizarOpcionesLotesEstado() {
+            const selectCalleEstado = document.getElementById('selectCalleEstado');
+            const selectLoteEstado = document.getElementById('selectLoteEstado');
+            const numeroCalle = selectCalleEstado.value;
+            selectLoteEstado.innerHTML = '';
+
+            let lotesCalle = obtenerLotesCalle(numeroCalle);
+            if (!lotesCalle) {
+                console.error('Calle no válida:', numeroCalle);
+                alert('Calle no válida.');
+                return;
+            }
+
+            lotesCalle.forEach(lote => {
+                if (lote.id) {
+                    const option = document.createElement('option');
+                    option.value = lote.id;
+                    option.textContent = `Lote ${lote.id}`;
+                    selectLoteEstado.appendChild(option);
+                }
+            });
+
+            // Seleccionar la primera opción por defecto
+            if (selectLoteEstado.options.length > 0) {
+                selectLoteEstado.selectedIndex = 0;
+            }
         }
 
-        const lote = lotesCalle.find(l => l.id == idLote);
-
-        if (!lote) {
-            alert('Lote no encontrado.');
-            return;
+        // Obtener lotes de una calle específica
+        function obtenerLotesCalle(numeroCalle) {
+            const lotes = {
+                '1': lotesCalle1,
+                '2': lotesCalle2,
+                '3': lotesCalle3,
+                '4': lotesCalle4,
+                '5': lotesCalle5,
+                '6': lotesCalle6,
+                '7': lotesCalle7
+            };
+            return lotes[numeroCalle] || null;
         }
 
-        // Actualizar el estado del lote
-        lote.estado = estado;
+        // Actualizar estado de un lote
+        function actualizarEstadoLote() {
+            const selectCalleEstado = document.getElementById('selectCalleEstado');
+            const selectLoteEstado = document.getElementById('selectLoteEstado');
+            const selectEstado = document.getElementById('selectEstado');
+            const numeroCalle = selectCalleEstado.value;
+            const idLote = selectLoteEstado.value;
+            const estado = selectEstado.value;
 
-        // Remover clases de estado anteriores
-        lote.elemento.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso', 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
+            if (!idLote) {
+                alert('Por favor, selecciona un lote válido.');
+                return;
+            }
 
-        // Añadir la clase de estado correspondiente
-        if (estado) {
-            lote.elemento.classList.add(`estado-${estado}`);
+            let lotesCalle = obtenerLotesCalle(numeroCalle);
+            if (!lotesCalle) {
+                alert('Calle no válida.');
+                return;
+            }
+
+            const lote = lotesCalle.find(l => l.id == idLote);
+
+            if (!lote) {
+                alert('Lote no encontrado.');
+                return;
+            }
+
+            // Actualizar el estado del lote
+            lote.estado = estado;
+
+            // Remover clases de estado anteriores
+            lote.elemento.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso', 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
+
+            // Añadir la clase de estado correspondiente
+            if (estado) {
+                lote.elemento.classList.add(`estado-${estado}`);
+            }
+
+            // Actualizar asteriscos
+            actualizarAsteriscos(lote, lote.elemento);
+
+            // Actualizar tooltip
+            actualizarTooltips(lote);
+
+            guardarConfiguracion(); // Guardar cambios automáticamente
+
+            alert(`Estado del Lote ${idLote} en Calle ${numeroCalle} actualizado a ${estado}.`);
         }
 
-        // Actualizar asteriscos
-        actualizarAsteriscos(lote, lote.elemento);
+        // Mostrar formulario desde el estado seleccionado
+        function mostrarFormularioDesdeEstado() {
+            const selectCalleEstado = document.getElementById('selectCalleEstado');
+            const selectLoteEstado = document.getElementById('selectLoteEstado');
+            const numeroCalle = selectCalleEstado.value;
+            const idLote = selectLoteEstado.value;
 
-        // Actualizar tooltip
-        actualizarTooltips(lote);
+            if (!idLote) {
+                alert('Por favor, selecciona un lote válido.');
+                return;
+            }
 
-        guardarConfiguracion(); // Guardar cambios automáticamente
+            let lotesCalle = obtenerLotesCalle(numeroCalle);
+            if (!lotesCalle) {
+                alert('Calle no válida.');
+                return;
+            }
 
-        alert(`Estado del Lote ${idLote} en Calle ${numeroCalle} actualizado a ${estado}.`);
-    }
+            loteActual = lotesCalle.find(l => l.id == idLote);
 
-    function mostrarFormularioDesdeEstado() {
-        const selectCalleEstado = document.getElementById('selectCalleEstado');
-        const selectLoteEstado = document.getElementById('selectLoteEstado');
-        const numeroCalle = selectCalleEstado.value;
-        const idLote = selectLoteEstado.value;
+            if (!loteActual) {
+                alert('Lote no encontrado.');
+                return;
+            }
 
-        if (!idLote) {
-            alert('Por favor, selecciona un lote válido.');
-            return;
+            // Asegurarse de que loteActual.datos existe
+            if (!loteActual.datos) {
+                loteActual.datos = {};
+            }
+
+            // Cargar los datos del lote en el formulario
+            document.getElementById('propietario').value = loteActual.datos.propietario || '';
+            document.getElementById('inquilino').value = loteActual.datos.inquilino || '';
+            document.getElementById('fechaDesde').value = loteActual.datos.fechaDesde || '';
+            document.getElementById('fechaHasta').value = loteActual.datos.fechaHasta || '';
+            document.getElementById('enProceso').value = loteActual.datos.enProceso || '';
+
+            // Mostrar enlace para ver el archivo adjunto si existe
+            const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
+            const enlaceArchivo = document.getElementById('enlaceArchivo');
+            const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
+
+            if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
+                archivoAdjuntoDiv.style.display = 'block';
+                enlaceArchivo.href = loteActual.datos.archivo;
+                enlaceArchivo.innerHTML = `<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto (${loteActual.datos.archivoNombre})`;
+                enlaceArchivo.download = loteActual.datos.archivoNombre; // Añadido atributo download
+                botonBorrarArchivo.style.display = 'inline-block'; // Mostrar botón de borrar archivo
+            } else {
+                archivoAdjuntoDiv.style.display = 'none';
+                enlaceArchivo.href = '#';
+                enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>';
+                enlaceArchivo.removeAttribute('download'); // Remover atributo download si no hay archivo
+                botonBorrarArchivo.style.display = 'none'; // Ocultar botón de borrar archivo
+            }
+
+            // Limpiar el campo de archivo
+            document.getElementById('archivo').value = '';
+            delete document.getElementById('archivo').dataset.previousFileName;
+
+            // Mostrar el formulario
+            abrirFormulario();
         }
 
-        let lotesCalle = obtenerLotesCalle(numeroCalle);
-        if (!lotesCalle) {
-            alert('Calle no válida.');
-            return;
+        // Abrir formulario emergente
+        function abrirFormulario() {
+            if (!loteActual) return;
+
+            // Asegurarse de que loteActual.datos existe
+            if (!loteActual.datos) {
+                loteActual.datos = {};
+            }
+
+            // Cargar los datos del lote en el formulario
+            document.getElementById('propietario').value = loteActual.datos.propietario || '';
+            document.getElementById('inquilino').value = loteActual.datos.inquilino || '';
+            document.getElementById('fechaDesde').value = loteActual.datos.fechaDesde || '';
+            document.getElementById('fechaHasta').value = loteActual.datos.fechaHasta || '';
+            document.getElementById('enProceso').value = loteActual.datos.enProceso || '';
+
+            // Mostrar enlace para ver el archivo adjunto si existe
+            const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
+            const enlaceArchivo = document.getElementById('enlaceArchivo');
+            const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
+
+            if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
+                archivoAdjuntoDiv.style.display = 'block';
+                enlaceArchivo.href = loteActual.datos.archivo;
+                enlaceArchivo.innerHTML = `<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto (${loteActual.datos.archivoNombre})`;
+                enlaceArchivo.download = loteActual.datos.archivoNombre; // Añadido atributo download
+                botonBorrarArchivo.style.display = 'inline-block'; // Mostrar botón de borrar archivo
+            } else {
+                archivoAdjuntoDiv.style.display = 'none';
+                enlaceArchivo.href = '#';
+                enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>';
+                enlaceArchivo.removeAttribute('download'); // Remover atributo download si no hay archivo
+                botonBorrarArchivo.style.display = 'none'; // Ocultar botón de borrar archivo
+            }
+
+            // Limpiar el campo de archivo
+            document.getElementById('archivo').value = '';
+            delete document.getElementById('archivo').dataset.previousFileName;
+
+            // Mostrar el formulario
+            document.getElementById('formularioLote').style.display = 'block';
+
+            // Resaltar el lote seleccionado
+            resaltarLoteSeleccionado(loteActual);
         }
 
-        loteActual = lotesCalle.find(l => l.id == idLote);
+        // Guardar datos del lote
+        function guardarDatosLote() {
+            if (!loteActual) {
+                alert('No hay un lote seleccionado.');
+                return;
+            }
 
-        if (!loteActual) {
-            alert('Lote no encontrado.');
-            return;
-        }
+            // Validar campos obligatorios
+            const propietario = document.getElementById('propietario').value.trim();
+            if (propietario === '') {
+                alert('El campo "Propietario" es obligatorio.');
+                return;
+            }
 
-        // Asegurarse de que loteActual.datos existe
-        if (!loteActual.datos) {
-            loteActual.datos = {};
-        }
+            // Asegurarse de que loteActual.datos existe
+            if (!loteActual.datos) {
+                loteActual.datos = {};
+            }
 
-        // Cargar los datos del lote en el formulario
-        document.getElementById('propietario').value = loteActual.datos.propietario || '';
-        document.getElementById('inquilino').value = loteActual.datos.inquilino || '';
-        document.getElementById('fechaDesde').value = loteActual.datos.fechaDesde || '';
-        document.getElementById('fechaHasta').value = loteActual.datos.fechaHasta || '';
-        document.getElementById('enProceso').value = loteActual.datos.enProceso || '';
+            const inquilino = document.getElementById('inquilino').value;
+            const fechaDesde = document.getElementById('fechaDesde').value;
+            const fechaHasta = document.getElementById('fechaHasta').value;
+            const enProceso = document.getElementById('enProceso').value;
 
-        // Mostrar enlace para ver el archivo adjunto si existe
-        const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
-        const enlaceArchivo = document.getElementById('enlaceArchivo');
-        const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
+            // Manejo del archivo adjunto
+            const archivoInput = document.getElementById('archivo');
+            const archivo = archivoInput.files[0];
 
-        if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
-            archivoAdjuntoDiv.style.display = 'block';
-            enlaceArchivo.href = loteActual.datos.archivo;
-            enlaceArchivo.innerHTML = `<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto (${loteActual.datos.archivoNombre})`;
-            enlaceArchivo.download = loteActual.datos.archivoNombre; // Añadido atributo download
-            botonBorrarArchivo.style.display = 'inline-block'; // Mostrar botón de borrar archivo
-        } else {
-            archivoAdjuntoDiv.style.display = 'none';
-            enlaceArchivo.href = '#';
-            enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>';
-            enlaceArchivo.removeAttribute('download'); // Remover atributo download si no hay archivo
-            botonBorrarArchivo.style.display = 'none'; // Ocultar botón de borrar archivo
-        }
+            if (archivo) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const contenidoArchivo = e.target.result;
+                    loteActual.datos.archivo = contenidoArchivo; // Contenido del archivo en base64
+                    loteActual.datos.archivoNombre = archivo.name;
 
-        // Limpiar el campo de archivo
-        document.getElementById('archivo').value = '';
-        delete document.getElementById('archivo').dataset.previousFileName;
-
-        // Mostrar el formulario
-        abrirFormulario();
-    }
-
-    function abrirFormulario() {
-        if (!loteActual) return;
-
-        // Asegurarse de que loteActual.datos existe
-        if (!loteActual.datos) {
-            loteActual.datos = {};
-        }
-
-        // Cargar los datos del lote en el formulario
-        document.getElementById('propietario').value = loteActual.datos.propietario || '';
-        document.getElementById('inquilino').value = loteActual.datos.inquilino || '';
-        document.getElementById('fechaDesde').value = loteActual.datos.fechaDesde || '';
-        document.getElementById('fechaHasta').value = loteActual.datos.fechaHasta || '';
-        document.getElementById('enProceso').value = loteActual.datos.enProceso || '';
-
-        // Mostrar enlace para ver el archivo adjunto si existe
-        const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
-        const enlaceArchivo = document.getElementById('enlaceArchivo');
-        const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
-
-        if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
-            archivoAdjuntoDiv.style.display = 'block';
-            enlaceArchivo.href = loteActual.datos.archivo;
-            enlaceArchivo.innerHTML = `<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto (${loteActual.datos.archivoNombre})`;
-            enlaceArchivo.download = loteActual.datos.archivoNombre; // Añadido atributo download
-            botonBorrarArchivo.style.display = 'inline-block'; // Mostrar botón de borrar archivo
-        } else {
-            archivoAdjuntoDiv.style.display = 'none';
-            enlaceArchivo.href = '#';
-            enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>';
-            enlaceArchivo.removeAttribute('download'); // Remover atributo download si no hay archivo
-            botonBorrarArchivo.style.display = 'none'; // Ocultar botón de borrar archivo
-        }
-
-        // Limpiar el campo de archivo
-        document.getElementById('archivo').value = '';
-        delete document.getElementById('archivo').dataset.previousFileName;
-
-        // Mostrar el formulario
-        document.getElementById('formularioLote').style.display = 'block';
-
-        // Resaltar el lote seleccionado
-        resaltarLoteSeleccionado(loteActual);
-    }
-
-    function guardarDatosLote() {
-        if (!loteActual) {
-            alert('No hay un lote seleccionado.');
-            return;
-        }
-
-        // Validar campos obligatorios
-        const propietario = document.getElementById('propietario').value.trim();
-        if (propietario === '') {
-            alert('El campo "Propietario" es obligatorio.');
-            return;
-        }
-
-        // Asegurarse de que loteActual.datos existe
-        if (!loteActual.datos) {
-            loteActual.datos = {};
-        }
-
-        const inquilino = document.getElementById('inquilino').value;
-        const fechaDesde = document.getElementById('fechaDesde').value;
-        const fechaHasta = document.getElementById('fechaHasta').value;
-        const enProceso = document.getElementById('enProceso').value;
-
-        // Manejo del archivo adjunto
-        const archivoInput = document.getElementById('archivo');
-        const archivo = archivoInput.files[0];
-
-        if (archivo) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const contenidoArchivo = e.target.result;
-                loteActual.datos.archivo = contenidoArchivo; // Contenido del archivo en base64
-                loteActual.datos.archivoNombre = archivo.name;
-
-                // Guardar los demás datos después de leer el archivo
+                    // Guardar los demás datos después de leer el archivo
+                    guardarDatosLoteContinua(propietario, inquilino, fechaDesde, fechaHasta, enProceso);
+                };
+                reader.onerror = function() {
+                    alert('Error al leer el archivo.');
+                };
+                reader.readAsDataURL(archivo);
+            } else {
+                // No se seleccionó un nuevo archivo
+                // Si ya existía un archivo adjunto, lo conservamos
+                // Si no, eliminamos los datos del archivo
+                if (!loteActual.datos.archivo || !loteActual.datos.archivoNombre) {
+                    delete loteActual.datos.archivo;
+                    delete loteActual.datos.archivoNombre;
+                }
                 guardarDatosLoteContinua(propietario, inquilino, fechaDesde, fechaHasta, enProceso);
-            };
-            reader.onerror = function() {
-                alert('Error al leer el archivo.');
-            };
-            reader.readAsDataURL(archivo);
-        } else {
-            // No se seleccionó un nuevo archivo
-            // Si ya existía un archivo adjunto, lo conservamos
-            // Si no, eliminamos los datos del archivo
-            if (!loteActual.datos.archivo || !loteActual.datos.archivoNombre) {
-                delete loteActual.datos.archivo;
-                delete loteActual.datos.archivoNombre;
             }
-            guardarDatosLoteContinua(propietario, inquilino, fechaDesde, fechaHasta, enProceso);
-        }
-    }
-
-    function guardarDatosLoteContinua(propietario, inquilino, fechaDesde, fechaHasta, enProceso) {
-        // Guardar los demás datos
-        loteActual.datos.propietario = propietario;
-        loteActual.datos.inquilino = inquilino;
-        loteActual.datos.fechaDesde = fechaDesde;
-        loteActual.datos.fechaHasta = fechaHasta;
-        loteActual.datos.enProceso = enProceso;
-
-        // Removemos clases anteriores de "En Proceso de"
-        loteActual.elemento.classList.remove('estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
-
-        // Si tiene un estado de "En Proceso de", añadimos la clase correspondiente
-        if (enProceso) {
-            loteActual.elemento.classList.add(`estado-${enProceso}`);
         }
 
-        // Actualizar asteriscos
-        actualizarAsteriscos(loteActual, loteActual.elemento);
+        function guardarDatosLoteContinua(propietario, inquilino, fechaDesde, fechaHasta, enProceso) {
+            // Guardar los demás datos
+            loteActual.datos.propietario = propietario;
+            loteActual.datos.inquilino = inquilino;
+            loteActual.datos.fechaDesde = fechaDesde;
+            loteActual.datos.fechaHasta = fechaHasta;
+            loteActual.datos.enProceso = enProceso;
 
-        // Actualizar tooltip
-        actualizarTooltips(loteActual);
+            // Removemos clases anteriores de "En Proceso de"
+            loteActual.elemento.classList.remove('estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
 
-        // Añadir o remover ícono de archivo adjunto
-        const existingIconoArchivo = loteActual.elemento.querySelector('.icono-archivo');
-        if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
-            if (!existingIconoArchivo) {
-                const iconoArchivo = document.createElement('i');
-                iconoArchivo.className = 'fas fa-paperclip icono-archivo';
-                loteActual.elemento.appendChild(iconoArchivo);
+            // Si tiene un estado de "En Proceso de", añadimos la clase correspondiente
+            if (enProceso) {
+                loteActual.elemento.classList.add(`estado-${enProceso}`);
             }
-        } else {
+
+            // Actualizar asteriscos
+            actualizarAsteriscos(loteActual, loteActual.elemento);
+
+            // Actualizar tooltip
+            actualizarTooltips(loteActual);
+
+            // Añadir o remover ícono de archivo adjunto
+            const existingIconoArchivo = loteActual.elemento.querySelector('.icono-archivo');
+            if (loteActual.datos.archivo && loteActual.datos.archivoNombre) {
+                if (!existingIconoArchivo) {
+                    const iconoArchivo = document.createElement('i');
+                    iconoArchivo.className = 'fas fa-paperclip icono-archivo';
+                    loteActual.elemento.appendChild(iconoArchivo);
+                }
+            } else {
+                if (existingIconoArchivo) {
+                    loteActual.elemento.removeChild(existingIconoArchivo);
+                }
+            }
+
+            cerrarFormulario();
+            loteActual = null;
+
+            guardarConfiguracion(); // Guardar cambios automáticamente
+
+            alert('Datos del lote guardados correctamente.');
+        }
+
+        // Actualizar asteriscos en el lote
+        function actualizarAsteriscos(lote, divLote) {
+            // Remover asteriscos existentes
+            const existingAsteriscos = divLote.querySelectorAll('.asterisco');
+            existingAsteriscos.forEach(a => divLote.removeChild(a));
+
+            if (lote.datos && (lote.datos.propietario || lote.datos.inquilino || lote.datos.fechaDesde || lote.datos.fechaHasta || lote.datos.enProceso || lote.datos.archivo)) {
+                // Añadir un asterisco para indicar que hay datos
+                const asterisco1 = document.createElement('span');
+                asterisco1.textContent = '*';
+                asterisco1.className = 'asterisco';
+                divLote.appendChild(asterisco1);
+
+                // Añadir un segundo asterisco si hay un archivo adjunto
+                if (lote.datos.archivo && lote.datos.archivoNombre) {
+                    const asterisco2 = document.createElement('span');
+                    asterisco2.textContent = '*';
+                    asterisco2.className = 'asterisco';
+                    asterisco2.style.right = '18px'; // Ajustar posición para el segundo asterisco
+                    divLote.appendChild(asterisco2);
+                }
+            }
+        }
+
+        // Borrar archivo adjunto del lote
+        function borrarArchivoAdjunto() {
+            if (!loteActual) {
+                alert('No hay un lote seleccionado.');
+                return;
+            }
+
+            // Confirmar la acción de borrado
+            const confirmBorrar = confirm('¿Estás seguro de que deseas borrar el archivo adjunto?');
+            if (!confirmBorrar) {
+                return;
+            }
+
+            // Eliminar los datos del archivo adjunto
+            delete loteActual.datos.archivo;
+            delete loteActual.datos.archivoNombre;
+
+            // Remover el enlace de archivo adjunto en el formulario
+            const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
+            const enlaceArchivo = document.getElementById('enlaceArchivo');
+            const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
+
+            enlaceArchivo.href = '#';
+            enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto';
+            enlaceArchivo.removeAttribute('download'); // Remover atributo download
+            archivoAdjuntoDiv.style.display = 'none';
+
+            // Remover el ícono de archivo adjunto en el mapa
+            const existingIconoArchivo = loteActual.elemento.querySelector('.icono-archivo');
             if (existingIconoArchivo) {
                 loteActual.elemento.removeChild(existingIconoArchivo);
             }
+
+            // Ocultar el botón de borrar archivo
+            botonBorrarArchivo.style.display = 'none';
+
+            // Actualizar asteriscos
+            actualizarAsteriscos(loteActual, loteActual.elemento);
+
+            // Actualizar tooltip
+            actualizarTooltips(loteActual);
+
+            guardarConfiguracion(); // Guardar cambios automáticamente
+
+            alert('Archivo adjunto borrado correctamente.');
         }
 
-        cerrarFormulario();
-        loteActual = null;
+        // Cerrar formulario emergente
+        function cerrarFormulario() {
+            const formulario = document.getElementById('formularioLote');
+            formulario.style.display = 'none';
+            // Limpiar formulario
+            document.getElementById('propietario').value = '';
+            document.getElementById('inquilino').value = '';
+            document.getElementById('fechaDesde').value = '';
+            document.getElementById('fechaHasta').value = '';
+            document.getElementById('enProceso').value = '';
+            document.getElementById('archivo').value = '';
+            delete document.getElementById('archivo').dataset.previousFileName;
+            document.getElementById('archivoAdjunto').style.display = 'none';
+            document.getElementById('enlaceArchivo').innerHTML = '<i class="fas fa-paperclip me-2"></i>Ver archivo adjunto';
+            document.getElementById('enlaceArchivo').href = '#';
+            document.getElementById('enlaceArchivo').removeAttribute('download');
+            document.getElementById('botonBorrarArchivo').style.display = 'none';
 
-        guardarConfiguracion(); // Guardar cambios automáticamente
-    }
-
-    function actualizarAsteriscos(lote, divLote) {
-        // Remover asteriscos existentes
-        const existingAsteriscos = divLote.querySelectorAll('.asterisco');
-        existingAsteriscos.forEach(a => divLote.removeChild(a));
-
-        if (lote.datos && (lote.datos.propietario || lote.datos.inquilino || lote.datos.fechaDesde || lote.datos.fechaHasta || lote.datos.enProceso || lote.datos.archivo)) {
-            // Añadir un asterisco para indicar que hay datos
-            const asterisco1 = document.createElement('span');
-            asterisco1.textContent = '*';
-            asterisco1.className = 'asterisco';
-            divLote.appendChild(asterisco1);
-
-            // Añadir un segundo asterisco si hay un archivo adjunto
-            if (lote.datos.archivo && lote.datos.archivoNombre) {
-                const asterisco2 = document.createElement('span');
-                asterisco2.textContent = '*';
-                asterisco2.className = 'asterisco';
-                asterisco2.style.right = '18px'; // Ajustar posición para el segundo asterisco
-                divLote.appendChild(asterisco2);
-            }
-        }
-    }
-
-    function borrarArchivoAdjunto() {
-        if (!loteActual) {
-            alert('No hay un lote seleccionado.');
-            return;
+            // Remover resalte del lote
+            removerResaltadoLote();
         }
 
-        // Confirmar la acción de borrado
-        const confirmBorrar = confirm('¿Estás seguro de que deseas borrar el archivo adjunto?');
-        if (!confirmBorrar) {
-            return;
-        }
+        // Guardar configuración en localStorage
+        function guardarConfiguracion() {
+            try {
+                // Guardar en localStorage
+                localStorage.setItem('lotesCalle1', JSON.stringify(lotesCalle1));
+                localStorage.setItem('lotesCalle2', JSON.stringify(lotesCalle2));
+                localStorage.setItem('lotesCalle3', JSON.stringify(lotesCalle3));
+                localStorage.setItem('lotesCalle4', JSON.stringify(lotesCalle4));
+                localStorage.setItem('lotesCalle5', JSON.stringify(lotesCalle5));
+                localStorage.setItem('lotesCalle6', JSON.stringify(lotesCalle6));
+                localStorage.setItem('lotesCalle7', JSON.stringify(lotesCalle7));
 
-        // Eliminar los datos del archivo adjunto
-        delete loteActual.datos.archivo;
-        delete loteActual.datos.archivoNombre;
-
-        // Remover el enlace de archivo adjunto en el formulario
-        const archivoAdjuntoDiv = document.getElementById('archivoAdjunto');
-        const enlaceArchivo = document.getElementById('enlaceArchivo');
-        enlaceArchivo.href = '#';
-        enlaceArchivo.innerHTML = '<i class="fas fa-paperclip me-2"></i>';
-        enlaceArchivo.removeAttribute('download'); // Remover atributo download
-        archivoAdjuntoDiv.style.display = 'none';
-
-        // Remover el ícono de archivo adjunto en el mapa
-        const existingIconoArchivo = loteActual.elemento.querySelector('.icono-archivo');
-        if (existingIconoArchivo) {
-            loteActual.elemento.removeChild(existingIconoArchivo);
-        }
-
-        // Ocultar el botón de borrar archivo
-        const botonBorrarArchivo = document.getElementById('botonBorrarArchivo');
-        botonBorrarArchivo.style.display = 'none';
-
-        // Actualizar asteriscos
-        actualizarAsteriscos(loteActual, loteActual.elemento);
-
-        // Actualizar tooltip
-        actualizarTooltips(loteActual);
-
-        guardarConfiguracion(); // Guardar cambios automáticamente
-
-        alert('Archivo adjunto borrado correctamente.');
-    }
-
-    function cerrarFormulario() {
-        document.getElementById('formularioLote').style.display = 'none';
-        // Limpiar formulario
-        document.getElementById('propietario').value = '';
-        document.getElementById('inquilino').value = '';
-        document.getElementById('fechaDesde').value = '';
-        document.getElementById('fechaHasta').value = '';
-        document.getElementById('enProceso').value = '';
-        document.getElementById('archivo').value = '';
-        delete document.getElementById('archivo').dataset.previousFileName;
-        document.getElementById('archivoAdjunto').style.display = 'none';
-        document.getElementById('enlaceArchivo').innerHTML = '<i class="fas fa-paperclip me-2"></i>';
-        document.getElementById('enlaceArchivo').href = '#';
-        document.getElementById('enlaceArchivo').removeAttribute('download');
-        document.getElementById('botonBorrarArchivo').style.display = 'none';
-
-        // Remover resalte del lote
-        removerResaltadoLote();
-    }
-
-    function guardarConfiguracion() {
-        try {
-            // Guardar en localStorage
-            localStorage.setItem('lotesCalle1', JSON.stringify(lotesCalle1));
-            localStorage.setItem('lotesCalle2', JSON.stringify(lotesCalle2));
-            localStorage.setItem('lotesCalle3', JSON.stringify(lotesCalle3));
-            localStorage.setItem('lotesCalle4', JSON.stringify(lotesCalle4));
-            localStorage.setItem('lotesCalle5', JSON.stringify(lotesCalle5));
-            localStorage.setItem('lotesCalle6', JSON.stringify(lotesCalle6));
-            localStorage.setItem('lotesCalle7', JSON.stringify(lotesCalle7));
-
-            alert("Configuración guardada exitosamente.");
-        } catch (e) {
-            if (e.name === 'QuotaExceededError') {
-                alert('No se pudo guardar la configuración. Se ha excedido el límite de almacenamiento en el navegador.');
-            } else {
-                alert('Error al guardar la configuración: ' + e.message);
-            }
-        }
-    }
-
-    function restaurarEstados(lotesCalle) {
-        lotesCalle.forEach(lote => {
-            if (lote.elemento) {
-                // Removemos clases anteriores
-                lote.elemento.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso', 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
-
-                // Añadimos la clase de estado si existe
-                if (lote.estado) {
-                    lote.elemento.classList.add(`estado-${lote.estado}`);
-                }
-
-                // Si tiene datos de "En Proceso de", añadimos la clase correspondiente
-                if (lote.datos && lote.datos.enProceso) {
-                    lote.elemento.classList.add(`estado-${lote.datos.enProceso}`);
-                }
-
-                // Actualizar asteriscos
-                actualizarAsteriscos(lote, lote.elemento);
-
-                // Añadir ícono de archivo adjunto si existe (con Font Awesome)
-                const existingIconoArchivo = lote.elemento.querySelector('.icono-archivo');
-                if (lote.datos && lote.datos.archivo && lote.datos.archivoNombre) {
-                    if (!existingIconoArchivo) {
-                        const iconoArchivo = document.createElement('i');
-                        iconoArchivo.className = 'fas fa-paperclip icono-archivo';
-                        lote.elemento.appendChild(iconoArchivo);
-                    }
+                console.log("Configuración guardada exitosamente en localStorage.");
+                // Optional: alert("Configuración guardada exitosamente.");
+            } catch (e) {
+                if (e.name === 'QuotaExceededError') {
+                    console.error('No se pudo guardar la configuración. Se ha excedido el límite de almacenamiento en el navegador.');
+                    alert('No se pudo guardar la configuración. Se ha excedido el límite de almacenamiento en el navegador.');
                 } else {
-                    if (existingIconoArchivo) {
-                        lote.elemento.removeChild(existingIconoArchivo);
-                    }
+                    console.error('Error al guardar la configuración:', e);
+                    alert('Error al guardar la configuración: ' + e.message);
                 }
-
-                // Actualizar tooltip
-                actualizarTooltips(lote);
             }
-        });
-    }
+        }
 
-    function actualizarTooltips(lote) {
-        const tooltipText = `
-            Propietario: ${lote.datos.propietario || 'N/A'}
-            Inquilino: ${lote.datos.inquilino || 'N/A'}
-            Estado: ${lote.estado || 'N/A'}
-        `;
-        lote.elemento.setAttribute('title', tooltipText);
-    }
+        // Restaurar estados de los lotes en el DOM
+        function restaurarEstados(lotesCalle) {
+            lotesCalle.forEach(lote => {
+                if (lote.elemento) {
+                    // Removemos clases anteriores
+                    lote.elemento.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso', 'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
 
-    // Función para resaltar el lote seleccionado
-    function resaltarLoteSeleccionado(lote) {
-        // Remover resaltado previo
-        removerResaltadoLote();
+                    // Añadimos la clase de estado si existe
+                    if (lote.estado) {
+                        lote.elemento.classList.add(`estado-${lote.estado}`);
+                    }
 
-        // Añadir clase de resaltado al lote actual
-        lote.elemento.classList.add('lote-seleccionado');
-    }
+                    // Si tiene datos de "En Proceso de", añadimos la clase correspondiente
+                    if (lote.datos && lote.datos.enProceso) {
+                        lote.elemento.classList.add(`estado-${lote.datos.enProceso}`);
+                    }
 
-    // Función para remover el resaltado del lote seleccionado
-    function removerResaltadoLote() {
-        const lotes = document.querySelectorAll('.lote-seleccionado');
-        lotes.forEach(lote => {
-            lote.classList.remove('lote-seleccionado');
-        });
-    }
+                    // Actualizar asteriscos
+                    actualizarAsteriscos(lote, lote.elemento);
+
+                    // Añadir ícono de archivo adjunto si existe (con Font Awesome)
+                    const existingIconoArchivo = lote.elemento.querySelector('.icono-archivo');
+                    if (lote.datos && lote.datos.archivo && lote.datos.archivoNombre) {
+                        if (!existingIconoArchivo) {
+                            const iconoArchivo = document.createElement('i');
+                            iconoArchivo.className = 'fas fa-paperclip icono-archivo';
+                            lote.elemento.appendChild(iconoArchivo);
+                        }
+                    } else {
+                        if (existingIconoArchivo) {
+                            lote.elemento.removeChild(existingIconoArchivo);
+                        }
+                    }
+
+                    // Actualizar tooltip
+                    actualizarTooltips(lote);
+                }
+            });
+        }
+
+        // Actualizar tooltips de los lotes
+        function actualizarTooltips(lote) {
+            const tooltipText = `
+Propietario: ${lote.datos.propietario || 'N/A'}
+Inquilino: ${lote.datos.inquilino || 'N/A'}
+Estado: ${lote.estado || 'N/A'}
+`;
+            lote.elemento.setAttribute('title', tooltipText.trim());
+        }
+
+        // Función para resaltar el lote seleccionado
+        function resaltarLoteSeleccionado(lote) {
+            // Remover resaltado previo
+            removerResaltadoLote();
+
+            // Añadir clase de resaltado al lote actual
+            lote.elemento.classList.add('lote-seleccionado');
+        }
+
+        // Función para remover el resaltado del lote seleccionado
+        function removerResaltadoLote() {
+            const lotes = document.querySelectorAll('.lote-seleccionado');
+            lotes.forEach(lote => {
+                lote.classList.remove('lote-seleccionado');
+            });
+        }
+
+        // Función principal de inicialización
+        function inicializarApp() {
+            console.log("Inicializando la aplicación...");
+
+            cargarLotes();
+            generarLotes();
+            generarOpcionesCallesEstado();
+            actualizarOpcionesLotesEstado();
+
+            // Restaurar estados y eventos
+            restaurarEstados(lotesCalle1);
+            restaurarEstados(lotesCalle2);
+            restaurarEstados(lotesCalle3);
+            restaurarEstados(lotesCalle4);
+            restaurarEstados(lotesCalle5);
+            restaurarEstados(lotesCalle6);
+            restaurarEstados(lotesCalle7);
+
+            console.log("Aplicación inicializada correctamente.");
+        }
+
+        // Ejecutar la función de inicialización
+        inicializarApp();
+    });
 </script>
 
 </body>
