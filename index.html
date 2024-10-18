@@ -6,7 +6,7 @@
     <!-- Google Fonts: Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papJ5m56Yp6Mnj/X+f2FeEm3bKGrwq6G8eZY5Fzh0Y8Hb0NgnYldxL2XhCU2uPq2GZfQG4xCkN0Z9oQc8g8jQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -33,8 +33,7 @@
             --color-lote-seleccionado: #FFD700; /* Oro para resaltar lote seleccionado */
         }
 
-        /* Resto de tus estilos CSS... */
-        /* ... */
+        /* ... (Resto de tus estilos CSS) ... */
     </style>
 </head>
 <body>
@@ -137,8 +136,75 @@
                     <div class="lote" data-calle="2" data-id="9">9</div>
                 </div>
             </div>
-            <!-- Resto de las calles... -->
-            <!-- ... -->
+            <!-- Calle 3 -->
+            <div class="calle">
+                <div class="lado lado-izquierdo" id="ladoIzquierdo3">
+                    <div class="lote" data-calle="3" data-id="10">10</div>
+                    <div class="lote" data-calle="3" data-id="11">11</div>
+                </div>
+                <div class="calle-label">Calle 3</div>
+                <div class="lado" id="ladoDerecho3">
+                    <div class="lote" data-calle="3" data-id="12">12</div>
+                    <div class="lote" data-calle="3" data-id="13">13</div>
+                </div>
+            </div>
+            <!-- Calle 4 -->
+            <div class="calle">
+                <div class="lado lado-izquierdo" id="ladoIzquierdo4">
+                    <div class="lote" data-calle="4" data-id="14">14</div>
+                    <div class="lote" data-calle="4" data-id="15">15</div>
+                </div>
+                <div class="calle-label">Calle 4</div>
+                <div class="lado" id="ladoDerecho4">
+                    <div class="lote" data-calle="4" data-id="16">16</div>
+                    <div class="lote" data-calle="4" data-id="17">17</div>
+                </div>
+            </div>
+            <!-- Calle 5 -->
+            <div class="calle">
+                <div class="lado lado-izquierdo" id="ladoIzquierdo5">
+                    <div class="lote" data-calle="5" data-id="18">18</div>
+                    <div class="lote" data-calle="5" data-id="19">19</div>
+                </div>
+                <div class="calle-label">Calle 5</div>
+                <div class="lado" id="ladoDerecho5">
+                    <div class="lote" data-calle="5" data-id="20">20</div>
+                    <div class="lote" data-calle="5" data-id="21">21</div>
+                </div>
+            </div>
+            <!-- Calle 6 -->
+            <div class="calle">
+                <div class="lado lado-izquierdo" id="ladoIzquierdo6">
+                    <div class="lote" data-calle="6" data-id="22">22</div>
+                    <div class="lote" data-calle="6" data-id="23">23</div>
+                </div>
+                <div class="calle-label">Calle 6</div>
+                <div class="lado" id="ladoDerecho6">
+                    <div class="lote" data-calle="6" data-id="24">24</div>
+                    <div class="lote" data-calle="6" data-id="25">25</div>
+                </div>
+            </div>
+            <!-- Calle 7 -->
+            <div class="calle">
+                <div class="lado lado-izquierdo" id="ladoIzquierdo7">
+                    <div class="lote" data-calle="7" data-id="26">26</div>
+                    <div class="lote" data-calle="7" data-id="27">27</div>
+                    <div class="lote" data-calle="7" data-id="28">28</div>
+                    <div class="lote" data-calle="7" data-id="29">29</div>
+                    <div class="lote" data-calle="7" data-id="30">30</div>
+                    <div class="lote" data-calle="7" data-id="31">31</div>
+                    <div class="lote" data-calle="7" data-id="32">32</div>
+                </div>
+                <div class="calle-label">Calle 7</div>
+                <div class="lado" id="ladoDerecho7">
+                    <div class="lote" data-calle="7" data-id="33">33</div>
+                    <div class="lote" data-calle="7" data-id="34">34</div>
+                    <div class="lote" data-calle="7" data-id="35">35</div>
+                    <div class="lote" data-calle="7" data-id="36">36</div>
+                    <div class="lote" data-calle="7" data-id="37">37</div>
+                    <div class="lote" data-calle="7" data-id="38">38</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -192,9 +258,9 @@
 </div>
 
 <!-- Bootstrap JS y sus dependencias -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-XZ5MQq+nzE3aS3iN9hLaD/I3saJjCQGjf/Tz6C3m3bRRe3r9E1DBR8K1JX9q2iu4" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -287,6 +353,12 @@
         function generarLotesPorCalle(numeroCalle, lotesCalle, agregarEspacioExtra = true) {
             const ladoIzquierdo = document.getElementById(`ladoIzquierdo${numeroCalle}`);
             const ladoDerecho = document.getElementById(`ladoDerecho${numeroCalle}`);
+
+            // Verificar si los elementos existen
+            if (!ladoIzquierdo || !ladoDerecho) {
+                console.error(`Elementos con ID ladoIzquierdo${numeroCalle} o ladoDerecho${numeroCalle} no encontrados.`);
+                return;
+            }
 
             ladoIzquierdo.innerHTML = '';
             ladoDerecho.innerHTML = agregarEspacioExtra ? '<div class="espacio-extra"></div>' : '';
