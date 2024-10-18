@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --color-fondo: #B3E5FC; /* Color celeste pastel */
@@ -476,15 +478,15 @@
         <div class="actualizar-datos">
             <h3>Actualizar Datos de Lotes</h3>
             <label for="selectCalleEstado">Calle:</label>
-            <select id="selectCalleEstado" onchange="actualizarOpcionesLotesEstado()">
+            <select id="selectCalleEstado" onchange="actualizarOpcionesLotesEstado()" class="form-control">
                 <!-- Opciones de calles generadas dinámicamente -->
             </select>
             <label for="selectLoteEstado">Lote:</label>
-            <select id="selectLoteEstado">
+            <select id="selectLoteEstado" class="form-control">
                 <!-- Opciones de lotes generadas dinámicamente -->
             </select>
             <label for="selectEstado">Estado:</label>
-            <select id="selectEstado">
+            <select id="selectEstado" class="form-control">
                 <!-- Opciones: Propietario, Alquilada, En Proceso -->
                 <option value="">Seleccione</option>
                 <option value="propietario">Propietario</option>
@@ -494,10 +496,10 @@
                 <option value="en-alquiler">En Alquiler</option>
                 <option value="ambas">Ambas</option>
             </select>
-            <button onclick="actualizarEstadoLote()" class="btn-actualizar">
+            <button onclick="actualizarEstadoLote()" class="btn-actualizar btn">
                 <i class="fas fa-sync-alt"></i> Actualizar Lote
             </button>
-            <button onclick="mostrarFormularioDesdeEstado()" class="btn-editar">
+            <button onclick="mostrarFormularioDesdeEstado()" class="btn-editar btn">
                 <i class="fas fa-edit"></i> Editar Lote
             </button>
             <!-- Botón Guardar Configuración movido aquí -->
@@ -625,7 +627,7 @@
     <input type="date" id="fechaHasta">
 
     <label for="enProceso">En Proceso de:</label>
-    <select id="enProceso">
+    <select id="enProceso" class="form-control">
         <option value="">Seleccione</option>
         <option value="en-venta">En Venta</option>
         <option value="en-alquiler">En Alquiler</option>
@@ -634,7 +636,7 @@
 
     <!-- Campo para cargar archivos -->
     <label for="archivo">Adjuntar archivo:</label>
-    <input type="file" id="archivo" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+    <input type="file" id="archivo" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" class="form-control">
 
     <!-- Previsualización de la imagen adjunta -->
     <img id="previsualizacionArchivo" src="#" alt="Previsualización" style="display: none; max-width: 100%; margin-top: 10px;">
@@ -656,6 +658,11 @@
         <i class="fas fa-times me-2"></i>Cancelar
     </button>
 </div>
+
+<!-- Bootstrap JS y sus dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
     // Definición de lotes para cada calle con IDs únicos
