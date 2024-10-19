@@ -264,7 +264,7 @@
             height: 50px;
         }
 
-        /* Estilos para estados y asterisco */
+        /* Estilos para estados y subestados */
         .estado-propietario {
             background-color: var(--color-lote-propietario);
             color: #ffffff;
@@ -281,15 +281,18 @@
         }
 
         .estado-en-venta {
-            border: 2px dashed var(--color-lote-en-venta);
+            background-color: var(--color-lote-en-proceso);
+            border: 2px solid var(--color-lote-en-venta);
         }
 
         .estado-en-alquiler {
-            border: 2px dashed var(--color-lote-en-alquiler);
+            background-color: var(--color-lote-en-proceso);
+            border: 2px solid var(--color-lote-en-alquiler);
         }
 
         .estado-ambas {
-            border: 2px dashed var(--color-lote-ambas);
+            background-color: var(--color-lote-en-proceso);
+            border: 2px solid var(--color-lote-ambas);
         }
 
         .asterisco {
@@ -364,6 +367,33 @@
                 margin-bottom: 5px;
             }
         }
+
+        /* Estilos para el formulario emergente y el overlay */
+        #formularioLote {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -432,19 +462,15 @@
             </select>
             <label for="selectEstado">Estado:</label>
             <select id="selectEstado">
-                <!-- Opciones de estados -->
                 <option value="">Seleccione un estado</option>
                 <option value="propietario">Propietario</option>
                 <option value="alquilada">Alquilada</option>
                 <option value="en-proceso">En Proceso</option>
-                <option value="en-venta">En Venta</option>
-                <option value="en-alquiler">En Alquiler</option>
-                <option value="ambas">Ambas</option>
             </select>
             <button onclick="actualizarEstadoLote()" class="btn-actualizar">
                 <i class="fas fa-sync-alt"></i> Actualizar Lote
             </button>
-            <button onclick="mostrarFormularioDesdeEstado()" class="btn-editar">
+            <button onclick="mostrarFormularioDesdeEditar()" class="btn-editar">
                 <i class="fas fa-edit"></i> Editar Lote
             </button>
         </div>
@@ -458,8 +484,11 @@
     </div>
 </div>
 
+<!-- Overlay para el formulario -->
+<div id="overlay"></div>
+
 <!-- Formulario emergente para editar datos del lote -->
-<div id="formularioLote" style="display: none;">
+<div id="formularioLote">
     <h3>Datos del Lote</h3>
     <label for="propietario">Nombre y Apellido del Propietario:</label>
     <input type="text" id="propietario" required>
@@ -473,13 +502,24 @@
     <label for="fechaHasta">Fecha Contrato Hasta:</label>
     <input type="date" id="fechaHasta">
 
-    <label for="enProceso">En Proceso de:</label>
-    <select id="enProceso">
-        <option value="">Seleccione</option>
-        <option value="en-venta">En Venta</option>
-        <option value="en-alquiler">En Alquiler</option>
-        <option value="ambas">Ambas</option>
+    <label for="estado">Estado:</label>
+    <select id="estado">
+        <option value="">Seleccione un estado</option>
+        <option value="propietario">Propietario</option>
+        <option value="alquilada">Alquilada</option>
+        <option value="en-proceso">En Proceso</option>
     </select>
+
+    <!-- Subestado solo visible si el estado es "En Proceso" -->
+    <div id="subestado-container" style="display: none; margin-top: 10px;">
+        <label for="enProceso">En Proceso de:</label>
+        <select id="enProceso">
+            <option value="">Seleccione</option>
+            <option value="en-venta">En Venta</option>
+            <option value="en-alquiler">En Alquiler</option>
+            <option value="ambas">Ambas</option>
+        </select>
+    </div>
 
     <!-- Campo para cargar archivos -->
     <label for="archivo">Adjuntar archivo:</label>
@@ -498,16 +538,17 @@
         </button>
     </div>
 
-    <button onclick="guardarDatosLote()" class="btn btn-primary">
+    <button onclick="guardarDatosLote()" class="btn btn-primary" style="margin-top: 15px;">
         <i class="fas fa-save me-2"></i>Guardar
     </button>
-    <button onclick="cerrarFormulario()" class="btn btn-secondary">
+    <button onclick="cerrarFormulario()" class="btn btn-secondary" style="margin-top: 15px;">
         <i class="fas fa-times me-2"></i>Cancelar
     </button>
 </div>
 
 <script>
     let lotesPorCalle = [];
+    let loteActual = null; // Referencia al lote que se está editando
 
     // Función para cargar la configuración desde localStorage
     function cargarConfiguracion() {
@@ -526,6 +567,7 @@
         cargarConfiguracion();
     };
 
+    // Manejar el cambio en la cantidad de calles
     document.getElementById('cantidadCalles').addEventListener('change', function() {
         const configuracionCalles = document.getElementById('configuracionCalles');
         configuracionCalles.innerHTML = '';
@@ -626,9 +668,10 @@
         divLote.dataset.calle = numeroCalle;
         divLote.dataset.lote = lote.numero;
         divLote.dataset.estado = lote.estado;
+        divLote.dataset.subestado = lote.subestado || '';
 
         // Aplicar clases de estado
-        aplicarClaseEstado(divLote, lote.estado);
+        aplicarClaseEstado(divLote, lote.estado, lote.subestado);
 
         // Mostrar número de lote
         const inputLote = document.createElement('input');
@@ -646,15 +689,18 @@
         divLote.appendChild(inputLote);
 
         // Manejar clic para selección
-        divLote.addEventListener('click', function() {
-            seleccionarLote(divLote);
+        divLote.addEventListener('click', function(event) {
+            // Evitar que el clic en el input no seleccione el lote
+            if (event.target.tagName.toLowerCase() !== 'input') {
+                seleccionarLote(divLote);
+            }
         });
 
         return divLote;
     }
 
-    // Función para aplicar clases según el estado
-    function aplicarClaseEstado(element, estado) {
+    // Función para aplicar clases según el estado y subestado
+    function aplicarClaseEstado(element, estado, subestado) {
         element.classList.remove('estado-propietario', 'estado-alquilada', 'estado-en-proceso',
                                  'estado-en-venta', 'estado-en-alquiler', 'estado-ambas');
         switch (estado) {
@@ -665,16 +711,15 @@
                 element.classList.add('estado-alquilada');
                 break;
             case 'en-proceso':
-                element.classList.add('estado-en-proceso');
-                break;
-            case 'en-venta':
-                element.classList.add('estado-en-venta');
-                break;
-            case 'en-alquiler':
-                element.classList.add('estado-en-alquiler');
-                break;
-            case 'ambas':
-                element.classList.add('estado-ambas');
+                if (subestado === 'en-venta') {
+                    element.classList.add('estado-en-venta');
+                } else if (subestado === 'en-alquiler') {
+                    element.classList.add('estado-en-alquiler');
+                } else if (subestado === 'ambas') {
+                    element.classList.add('estado-ambas');
+                } else {
+                    element.classList.add('estado-en-proceso');
+                }
                 break;
             default:
                 break;
@@ -720,8 +765,15 @@
     function limpiarSelectActualizarDatos() {
         const selectCalle = document.getElementById('selectCalleEstado');
         const selectLote = document.getElementById('selectLoteEstado');
+        const selectEstado = document.getElementById('selectEstado');
         selectCalle.innerHTML = '<option value="">Seleccione una calle</option>';
         selectLote.innerHTML = '<option value="">Seleccione un lote</option>';
+        selectEstado.innerHTML = `
+            <option value="">Seleccione un estado</option>
+            <option value="propietario">Propietario</option>
+            <option value="alquilada">Alquilada</option>
+            <option value="en-proceso">En Proceso</option>
+        `;
     }
 
     // Función para poblar el selector de calles en "Actualizar Datos de Lotes"
@@ -787,20 +839,38 @@
             return;
         }
 
-        // Actualizar el estado
+        // Actualizar el estado principal
         lote.estado = estado;
 
-        // Actualizar el mapa
-        generarLotes();
+        if (estado !== 'en-proceso') {
+            // Si no es en-proceso, eliminar cualquier subestado previo
+            lote.subestado = '';
+        }
+
+        // Aplicar la clase correspondiente
+        const loteElem = loteElemento(lote, numeroCalle);
+        aplicarClaseEstado(loteElem, lote.estado, lote.subestado);
 
         // Guardar en localStorage
         localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
 
+        generarLotes();
         alert('Estado del lote actualizado exitosamente.');
     }
 
-    // Función para mostrar el formulario desde el estado
-    function mostrarFormularioDesdeEstado() {
+    // Función para obtener el elemento DOM del lote
+    function loteElemento(lote, numeroCalle) {
+        const lotes = document.querySelectorAll('.lote');
+        for (let el of lotes) {
+            if (el.dataset.calle == numeroCalle && el.dataset.lote == lote.numero) {
+                return el;
+            }
+        }
+        return null;
+    }
+
+    // Función para mostrar el formulario desde "Editar Lote"
+    function mostrarFormularioDesdeEditar() {
         const numeroCalle = document.getElementById('selectCalleEstado').value;
         const numeroLote = document.getElementById('selectLoteEstado').value;
 
@@ -828,13 +898,27 @@
             return;
         }
 
-        // Mostrar el formulario con los datos del lote
+        // Asignar el lote actual para editar
+        loteActual = lote;
+
+        // Mostrar el formulario
         document.getElementById('formularioLote').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+
+        // Llenar los campos del formulario con los datos actuales
         document.getElementById('propietario').value = lote.propietario || '';
         document.getElementById('inquilino').value = lote.inquilino || '';
         document.getElementById('fechaDesde').value = lote.fechaDesde || '';
         document.getElementById('fechaHasta').value = lote.fechaHasta || '';
-        document.getElementById('enProceso').value = lote.enProceso || '';
+        document.getElementById('estado').value = lote.estado || '';
+        document.getElementById('enProceso').value = lote.subestado || '';
+
+        // Mostrar u ocultar el subestado según el estado principal
+        if (lote.estado === 'en-proceso') {
+            document.getElementById('subestado-container').style.display = 'block';
+        } else {
+            document.getElementById('subestado-container').style.display = 'none';
+        }
 
         // Manejar archivos adjuntos si es necesario
         if (lote.archivo) {
@@ -847,24 +931,41 @@
             document.getElementById('previsualizacionArchivo').style.display = 'none';
             document.getElementById('botonBorrarArchivo').style.display = 'none';
         }
-
-        // Guardar referencia al lote actual
-        formularioLote.currentLote = lote;
     }
 
-    // Funciones para el formulario de editar datos del lote
+    // Función para guardar los datos del lote desde el formulario
     function guardarDatosLote() {
-        const lote = formularioLote.currentLote;
-        if (!lote) {
+        if (!loteActual) {
             alert('No se ha seleccionado ningún lote para editar.');
             return;
         }
 
-        lote.propietario = document.getElementById('propietario').value;
-        lote.inquilino = document.getElementById('inquilino').value;
-        lote.fechaDesde = document.getElementById('fechaDesde').value;
-        lote.fechaHasta = document.getElementById('fechaHasta').value;
-        lote.enProceso = document.getElementById('enProceso').value;
+        // Obtener los valores del formulario
+        const propietario = document.getElementById('propietario').value.trim();
+        const inquilino = document.getElementById('inquilino').value.trim();
+        const fechaDesde = document.getElementById('fechaDesde').value;
+        const fechaHasta = document.getElementById('fechaHasta').value;
+        const estado = document.getElementById('estado').value;
+        const subestado = document.getElementById('enProceso').value;
+
+        // Validaciones básicas
+        if (estado === "") {
+            alert('Por favor, selecciona un estado.');
+            return;
+        }
+
+        if (estado === 'en-proceso' && subestado === "") {
+            alert('Por favor, selecciona un subestado para "En Proceso".');
+            return;
+        }
+
+        // Actualizar los datos del lote
+        loteActual.propietario = propietario;
+        loteActual.inquilino = inquilino;
+        loteActual.fechaDesde = fechaDesde;
+        loteActual.fechaHasta = fechaHasta;
+        loteActual.estado = estado;
+        loteActual.subestado = (estado === 'en-proceso') ? subestado : '';
 
         // Manejar archivo adjunto
         const archivoInput = document.getElementById('archivo');
@@ -872,7 +973,7 @@
             const archivo = archivoInput.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
-                lote.archivo = {
+                loteActual.archivo = {
                     nombre: archivo.name,
                     url: e.target.result
                 };
@@ -888,44 +989,51 @@
 
                 alert('Datos del lote guardados exitosamente.');
                 cerrarFormulario();
+                generarLotes();
+                poblarSelectCalleEstado();
             };
             reader.readAsDataURL(archivo);
         } else {
-            // Guardar en localStorage
+            // Si no se ha adjuntado un archivo nuevo, mantener el existente
             localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
 
             alert('Datos del lote guardados exitosamente.');
             cerrarFormulario();
+            generarLotes();
+            poblarSelectCalleEstado();
         }
-
-        generarLotes();
-        poblarSelectCalleEstado();
     }
 
+    // Función para cerrar el formulario
     function cerrarFormulario() {
         document.getElementById('formularioLote').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
         // Limpiar formulario
         document.getElementById('formularioLote').reset();
+        document.getElementById('subestado-container').style.display = 'none';
         document.getElementById('previsualizacionArchivo').style.display = 'none';
         document.getElementById('archivoAdjunto').style.display = 'none';
         document.getElementById('botonBorrarArchivo').style.display = 'none';
-        formularioLote.currentLote = null;
+        loteActual = null;
     }
 
+    // Función para borrar el archivo adjunto
     function borrarArchivoAdjunto() {
-        const lote = formularioLote.currentLote;
-        if (lote) {
-            lote.archivo = null;
-            document.getElementById('archivoAdjunto').style.display = 'none';
-            document.getElementById('previsualizacionArchivo').style.display = 'none';
-            document.getElementById('archivo').value = '';
-            document.getElementById('botonBorrarArchivo').style.display = 'none';
-
-            // Guardar en localStorage
-            localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
-
-            alert('Archivo adjunto borrado.');
+        if (!loteActual) {
+            alert('No se ha seleccionado ningún lote.');
+            return;
         }
+
+        loteActual.archivo = null;
+        document.getElementById('archivoAdjunto').style.display = 'none';
+        document.getElementById('previsualizacionArchivo').style.display = 'none';
+        document.getElementById('archivo').value = '';
+        document.getElementById('botonBorrarArchivo').style.display = 'none';
+
+        // Guardar en localStorage
+        localStorage.setItem('lotesPorCalle', JSON.stringify(lotesPorCalle));
+
+        alert('Archivo adjunto borrado.');
     }
 
     // Manejar la previsualización de archivos
@@ -953,6 +1061,17 @@
             enlaceArchivo.textContent = archivo.name;
             archivoAdjunto.style.display = 'block';
             document.getElementById('botonBorrarArchivo').style.display = 'inline-block';
+        }
+    });
+
+    // Escuchar cambios en el estado del formulario para mostrar u ocultar el subestado
+    document.getElementById('estado').addEventListener('change', function() {
+        const estado = this.value;
+        if (estado === 'en-proceso') {
+            document.getElementById('subestado-container').style.display = 'block';
+        } else {
+            document.getElementById('subestado-container').style.display = 'none';
+            document.getElementById('enProceso').value = '';
         }
     });
 </script>
