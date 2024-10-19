@@ -28,6 +28,8 @@
             --color-leyenda-fondo: #ffffff;
             --color-borde: #dddddd;
             --color-lote-seleccionado: #FFD700; /* Oro para resaltar lote seleccionado */
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
         }
 
         /* Estilos CSS */
@@ -64,11 +66,19 @@
         }
 
         .leyenda, .actualizar-datos, .configuracion-datos {
-            padding: 15px;
+            padding: 20px;
             background-color: var(--color-leyenda-fondo);
-            border: 1px solid var(--color-borde);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow:
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .leyenda:hover, .actualizar-datos:hover, .configuracion-datos:hover {
+            box-shadow:
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
         }
 
         .leyenda h3, .actualizar-datos h3, .configuracion-datos h3 {
@@ -80,19 +90,22 @@
         .leyenda-item {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .leyenda-color, .leyenda-border {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
-            border: 1px solid #000;
-            border-radius: 4px;
+            border-radius: 6px;
+            box-shadow:
+                inset 6px 6px 12px var(--shadow-dark),
+                inset -6px -6px 12px var(--shadow-light);
         }
 
         .leyenda-color {
             background-color: #fff;
+            border: 1px solid #ccc;
         }
 
         .border-en-venta {
@@ -109,18 +122,28 @@
 
         .actualizar-datos button, .configuracion-datos button {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
+            padding: 15px;
+            margin-top: 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             color: #ffffff;
+            box-shadow:
+                6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
+        }
+
+        .actualizar-datos button:hover, .configuracion-datos button:hover {
+            box-shadow:
+                2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+            transform: translateY(-2px);
         }
 
         .btn-actualizar {
@@ -144,30 +167,46 @@
             background-color: var(--color-boton);
             color: #ffffff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
+            box-shadow:
+                6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
         }
 
         .button-save:hover {
             background-color: var(--color-boton-hover);
+            box-shadow:
+                2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+            transform: translateY(-2px);
         }
 
         .mapa-container {
             overflow-x: auto;
             white-space: nowrap;
             background-color: var(--color-leyenda-fondo);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow:
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
             flex: 1 1 600px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .mapa-container:hover {
+            box-shadow:
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
         }
 
         .mapa {
@@ -194,18 +233,21 @@
             font-weight: 500;
             font-size: 16px;
             position: absolute;
-            top: -30px;
+            top: -40px;
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--color-leyenda-fondo);
-            padding: 2px 5px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 4px 10px;
+            border-radius: 8px;
+            box-shadow:
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
         }
 
         .lado {
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
 
         .lado-izquierdo {
@@ -213,28 +255,34 @@
         }
 
         .lote {
-            width: 70px;
-            height: 50px;
-            border: 1px solid var(--color-borde);
-            background-color: #ffffff;
+            width: 80px;
+            height: 60px;
+            border-radius: 12px;
+            background-color: var(--color-leyenda-fondo);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
             cursor: pointer;
             position: relative;
-            border-radius: 4px;
-            transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+            transition: all 0.3s ease;
+            box-shadow:
+                6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
             user-select: none;
         }
 
         .lote:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow:
+                2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+            transform: translateY(-4px);
         }
 
         .lote-seleccionado {
-            border: 2px solid var(--color-lote-seleccionado);
+            border: 3px solid var(--color-lote-seleccionado);
+            box-shadow:
+                inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
         }
 
         .lote-input {
@@ -247,17 +295,37 @@
             text-align: center;
             width: 60px;
             font-weight: 500;
+            font-size: 1em;
+            color: var(--color-texto);
+        }
+
+        .lote-input:focus {
+            outline: none;
         }
 
         input[type="text"], 
         input[type="date"], 
         select {
             width: 100%;
-            padding: 8px;
+            padding: 12px 20px;
             box-sizing: border-box;
-            border: 1px solid var(--color-borde);
-            border-radius: 4px;
+            border-radius: 12px;
             font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--color-leyenda-fondo);
+            box-shadow:
+                inset 6px 6px 12px var(--shadow-dark),
+                inset -6px -6px 12px var(--shadow-light);
+            border: none;
+            transition: box-shadow 0.3s ease;
+            color: var(--color-texto);
+        }
+
+        input[type="text"]:focus, 
+        input[type="date"]:focus, 
+        select:focus {
+            box-shadow:
+                inset 2px 2px 4px var(--shadow-dark),
+                inset -2px -2px 4px var(--shadow-light);
         }
 
         .espacio-extra {
@@ -268,31 +336,49 @@
         .estado-propietario {
             background-color: var(--color-lote-propietario);
             color: #ffffff;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.9em;
         }
 
         .estado-alquilada {
             background-color: var(--color-lote-alquilada);
             color: #000000;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.9em;
         }
 
         .estado-en-proceso {
             background-color: var(--color-lote-en-proceso);
             color: #ffffff;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.9em;
+        }
+
+        .estado-en-venta,
+        .estado-en-alquiler,
+        .estado-ambas {
+            background-color: var(--color-lote-en-proceso);
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.9em;
         }
 
         .estado-en-venta {
-            background-color: var(--color-lote-en-proceso);
             border: 2px solid var(--color-lote-en-venta);
+            color: #ffffff;
         }
 
         .estado-en-alquiler {
-            background-color: var(--color-lote-en-proceso);
             border: 2px solid var(--color-lote-en-alquiler);
+            color: #ffffff;
         }
 
         .estado-ambas {
-            background-color: var(--color-lote-en-proceso);
             border: 2px solid var(--color-lote-ambas);
+            color: #ffffff;
         }
 
         .asterisco {
@@ -323,18 +409,18 @@
             }
 
             .leyenda, .actualizar-datos, .configuracion-datos {
-                padding: 10px;
+                padding: 15px;
                 max-width: 100%;
             }
 
             .mapa-container {
-                padding: 10px;
+                padding: 15px;
                 flex: 1 1 100%;
             }
 
             .lote {
-                width: 60px;
-                height: 45px;
+                width: 70px;
+                height: 50px;
                 margin-bottom: 6px;
             }
 
@@ -350,8 +436,8 @@
 
         @media (max-width: 480px) {
             .lote {
-                width: 50px;
-                height: 40px;
+                width: 60px;
+                height: 45px;
             }
 
             .calle {
@@ -375,13 +461,22 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background-color: var(--color-leyenda-fondo);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow:
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
             z-index: 1000;
             width: 90%;
             max-width: 500px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        #formularioLote:hover {
+            box-shadow:
+                4px 4px 8px var(--shadow-dark),
+                -4px -4px 8px var(--shadow-light);
         }
 
         #overlay {
@@ -391,8 +486,50 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
             z-index: 999;
+        }
+
+        /* Botones dentro del formulario */
+        #formularioLote button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #ffffff;
+            margin-top: 15px;
+            box-shadow:
+                6px 6px 12px var(--shadow-dark),
+                -6px -6px 12px var(--shadow-light);
+        }
+
+        #formularioLote button:hover {
+            box-shadow:
+                2px 2px 4px var(--shadow-dark),
+                -2px -2px 4px var(--shadow-light);
+            transform: translateY(-2px);
+        }
+
+        #formularioLote .btn-primary {
+            background-color: var(--color-boton);
+        }
+
+        #formularioLote .btn-primary:hover {
+            background-color: var(--color-boton-hover);
+        }
+
+        #formularioLote .btn-secondary {
+            background-color: #757575;
+        }
+
+        #formularioLote .btn-secondary:hover {
+            background-color: #5c5c5c;
         }
     </style>
 </head>
@@ -526,7 +663,7 @@
     <input type="file" id="archivo" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
 
     <!-- Previsualización de la imagen adjunta -->
-    <img id="previsualizacionArchivo" src="#" alt="Previsualización" style="display: none; max-width: 100%; margin-top: 10px;">
+    <img id="previsualizacionArchivo" src="#" alt="Previsualización" style="display: none; max-width: 100%; margin-top: 10px; border-radius: 8px;">
 
     <!-- Enlace para ver o descargar el archivo adjunto -->
     <div id="archivoAdjunto" style="margin-top: 10px; display: none;">
@@ -538,10 +675,10 @@
         </button>
     </div>
 
-    <button onclick="guardarDatosLote()" class="btn btn-primary" style="margin-top: 15px;">
+    <button onclick="guardarDatosLote()" class="btn-primary">
         <i class="fas fa-save me-2"></i>Guardar
     </button>
-    <button onclick="cerrarFormulario()" class="btn btn-secondary" style="margin-top: 15px;">
+    <button onclick="cerrarFormulario()" class="btn-secondary">
         <i class="fas fa-times me-2"></i>Cancelar
     </button>
 </div>
